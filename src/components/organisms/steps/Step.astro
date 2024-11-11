@@ -1,0 +1,57 @@
+---
+import { twMerge } from 'tailwind-merge'
+import stagesData from '../../../../constants/stageData'
+import AudioPlayer from '../../molecules/audio-player/AudioPlayer.astro'
+---
+
+{
+	stagesData.map(stage => (
+		<section id={stage.category} class={twMerge(stage.backgroundColor)}>
+			<div class='flex'>
+				<img src={stage.icon} />
+				<h2>{stage.title}</h2>
+			</div>
+			<p>{stage.description}</p>
+			<button>
+				<a href='/#participa'>Participa en Yincana</a>
+			</button>
+			<div class='flex justify-center w-full gap-[150px]'>
+				{stage.audios.map(audio => (
+					<AudioPlayer
+						audio={audio}
+						iconPause={stage.iconPause}
+						iconPlay={stage.iconPlay}
+					/>
+				))}
+			</div>
+		</section>
+	))
+}
+
+<script>
+	const audios = document.querySelectorAll('audio')
+	const playIcons = document.querySelectorAll('.play-icon')
+	const pauseIcons = document.querySelectorAll('.pause-icon')
+
+	playIcons.forEach((icon, i) => {
+		icon.addEventListener('click', () => {
+			audios.forEach((audio, index) => {
+				audio.pause()
+				playIcons[index].classList.remove('display-none')
+				pauseIcons[index].classList.add('display-none')
+			})
+
+			audios[i].play()
+			playIcons[i].classList.add('display-none')
+			pauseIcons[i].classList.remove('display-none')
+		})
+	})
+
+	pauseIcons.forEach((icon, i) =>
+		icon.addEventListener('click', () => {
+			audios[i].pause()
+			playIcons[i].classList.remove('display-none')
+			pauseIcons[i].classList.add('display-none')
+		})
+	)
+</script>
