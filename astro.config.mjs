@@ -1,16 +1,9 @@
-// @ts-check
-import { defineConfig } from 'astro/config';
-import vercel from '@astrojs/vercel';
+import { defineConfig } from 'astro/config'
+import vercel from '@astrojs/vercel/serverless'
+import tailwind from '@astrojs/tailwind'
 
-import tailwind from '@astrojs/tailwind';
-
-// https://astro.build/config
 export default defineConfig({
-  output: 'hybrid',
-  integrations: [tailwind()],
-  adapter: vercel(),
-});
-
-
-
-
+	output: 'server',
+	integrations: [tailwind()],
+	adapter: vercel(),
+})
