@@ -60,3 +60,16 @@ body {
  display: flex !important;
 }
 
+.step {
+  transition: opacity 0.3s ease-in-out;
+}
+
+.audio-transcript {
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Zastąp klasę display-none */
+.hidden {
+  display: none;
+}
+
