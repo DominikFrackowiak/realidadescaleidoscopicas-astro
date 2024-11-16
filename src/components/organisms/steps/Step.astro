@@ -191,17 +191,17 @@ const wrapper = 'flex flex-col mx-[10px] md:mx-auto w-full px-4 max-w-[280px] md
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const audios = document.querySelectorAll('audio');
-    const playIcons = document.querySelectorAll('.play-icon');
-    const pauseIcons = document.querySelectorAll('.pause-icon');
-    const transcriptButtons = document.querySelectorAll('.transcript-open-button');
-    const audioTranscripts = document.querySelectorAll('.audio-transcript');
-    const closeTranscriptButtons = document.querySelectorAll('.close-transcript');
-    const mainSections = document.querySelectorAll('.main-section');
-    const transcriptSections = document.querySelectorAll('.transcript-section');
+    const audios = document.querySelectorAll<HTMLAudioElement>('audio');
+    const playIcons = document.querySelectorAll<HTMLDivElement>('.play-icon');
+    const pauseIcons = document.querySelectorAll<HTMLDivElement>('.pause-icon');
+    const transcriptButtons = document.querySelectorAll<HTMLButtonElement>('.transcript-open-button');
+    const audioTranscripts = document.querySelectorAll<HTMLDivElement>('.audio-transcript');
+    const closeTranscriptButtons = document.querySelectorAll<HTMLButtonElement>('.close-transcript');
+    const mainSections = document.querySelectorAll<HTMLDivElement>('.main-section');
+    const transcriptSections = document.querySelectorAll<HTMLDivElement>('.transcript-section');
 
-    // Obsługa audio - bez zmian
-    pauseIcons.forEach(icon => {
+    // Obsługa audio
+    pauseIcons.forEach((icon) => {
       icon.style.display = 'none';
     });
 
@@ -209,69 +209,77 @@ const wrapper = 'flex flex-col mx-[10px] md:mx-auto w-full px-4 max-w-[280px] md
       icon.addEventListener('click', () => {
         audios.forEach((audio, index) => {
           audio.pause();
-          playIcons[index].style.display = 'block';
-          pauseIcons[index].style.display = 'none';
+          playIcons.item(index).style.display = 'block';
+          pauseIcons.item(index).style.display = 'none';
         });
 
-        audios[i].play();
-        playIcons[i].style.display = 'none';
-        pauseIcons[i].style.display = 'block';
+        audios.item(i).play();
+        icon.style.display = 'none';
+        pauseIcons.item(i).style.display = 'block';
       });
     });
 
     pauseIcons.forEach((icon, i) => {
       icon.addEventListener('click', () => {
-        audios[i].pause();
-        playIcons[i].style.display = 'block';
-        pauseIcons[i].style.display = 'none';
+        audios.item(i).pause();
+        playIcons.item(i).style.display = 'block';
+        icon.style.display = 'none';
       });
     });
 
-    // Nowa logika dla transkryptów
-    transcriptButtons.forEach(button => {
+    // Logika transkryptów
+    transcriptButtons.forEach((button) => {
       button.addEventListener('click', () => {
-        const stageIndex = button.dataset.stage;
-        const audioIndex = button.dataset.audio;
+        const stageIndex = button.getAttribute('data-stage');
+        const audioIndex = button.getAttribute('data-audio');
 
-        // Ukryj główną sekcję dla tego stage
-        mainSections[stageIndex].style.display = 'none';
-        
-        // Pokaż sekcję z transkryptami
-        transcriptSections[stageIndex].style.display = 'block';
-        
-        // Ukryj wszystkie transkrypty w tej sekcji
-        audioTranscripts.forEach(transcript => {
-          if (transcript.dataset.stage === stageIndex) {
-            transcript.style.display = 'none';
+        if (stageIndex !== null) {
+          const idx = parseInt(stageIndex);
+          
+          // Ukryj główną sekcję
+          mainSections.item(idx).style.display = 'none';
+          
+          // Pokaż sekcję transkryptów
+          transcriptSections.item(idx).style.display = 'block';
+          
+          // Ukryj wszystkie transkrypty w tej sekcji
+          audioTranscripts.forEach((transcript) => {
+            if (transcript.getAttribute('data-stage') === stageIndex) {
+              transcript.style.display = 'none';
+            }
+          });
+
+          // Pokaż odpowiedni transkrypt
+          const targetTranscript = document.querySelector<HTMLDivElement>(
+            `.audio-transcript[data-stage="${stageIndex}"][data-audio="${audioIndex}"]`
+          );
+          if (targetTranscript) {
+            targetTranscript.style.display = 'block';
           }
-        });
-
-        // Pokaż odpowiedni transkrypt
-        const targetTranscript = document.querySelector(
-          `.audio-transcript[data-stage="${stageIndex}"][data-audio="${audioIndex}"]`
-        );
-        if (targetTranscript) {
-          targetTranscript.style.display = 'block';
         }
       });
     });
 
-    closeTranscriptButtons.forEach(button => {
+    closeTranscriptButtons.forEach((button) => {
       button.addEventListener('click', () => {
-        const stageIndex = button.dataset.stage;
+        const stageIndex = button.getAttribute('data-stage');
         
-        // Ukryj sekcję z transkryptami
-        transcriptSections[stageIndex].style.display = 'none';
-        
-        // Pokaż główną sekcję
-        mainSections[stageIndex].style.display = 'block';
-        
-        // Ukryj wszystkie transkrypty
-        audioTranscripts.forEach(transcript => {
-          if (transcript.dataset.stage === stageIndex) {
-            transcript.style.display = 'none';
-          }
-        });
+        if (stageIndex !== null) {
+          const idx = parseInt(stageIndex);
+          
+          // Ukryj sekcję transkryptów
+          transcriptSections.item(idx).style.display = 'none';
+          
+          // Pokaż główną sekcję
+          mainSections.item(idx).style.display = 'block';
+          
+          // Ukryj wszystkie transkrypty
+          audioTranscripts.forEach((transcript) => {
+            if (transcript.getAttribute('data-stage') === stageIndex) {
+              transcript.style.display = 'none';
+            }
+          });
+        }
       });
     });
   });
