@@ -5,7 +5,7 @@ const { audio, iconPause, iconPlay } = Astro.props
 ---
 
 <div class='flex flex-col'>
-	<button class='flex flex-col items-center gap-5 py-5'>
+	<button class='flex flex-col items-center gap-5'>
 		<audio src={audio.audioSrc}></audio>
 		<div class='relative h-[70px] w-[80px]'>
 			<img
@@ -25,6 +25,8 @@ const { audio, iconPause, iconPlay } = Astro.props
 		</div>
 		<span class='text-2xl'>{audio.title}</span>
 	</button>
+
+	<hr class="mx-auto w-4/5 mt-3 mb-3">
 
 	<button class='transcript-open-button flex flex-col items-center'>
 		<span>más info</span>
