@@ -3,7 +3,7 @@ import { twMerge } from 'tailwind-merge'
 import stagesData from '../../../../lib/constants/stageData'
 import AudioPlayer from '../../molecules/audio-player/AudioPlayer.astro'
 // import { wrapper } from '../../../../constants/constantStyles'
-const wrapper = 'flex flex-col mx-[10px] md:mx-auto w-full px-4 max-w-[280px] md:max-w-[720px] lg:max-w-[1140px] gap-[40px]'
+const wrapper = 'flex flex-col mx-[10px] md:mx-auto w-full px-4 max-w-[280px] md:max-w-[720px] lg:max-w-[1140px] gap-[40px] items-center'
 ---
 
 {
@@ -16,8 +16,8 @@ const wrapper = 'flex flex-col mx-[10px] md:mx-auto w-full px-4 max-w-[280px] md
 						<h2 class="text-4xl font-tavares mt-[9px] font-bold">{stage.title}</h2>
 					</div>
 					<p class="text-xl">{stage.description}</p>
-					<button class="py-2 w-full md:w-2/5 self-center border">
-						<a href='/#participa' class="font-tavares text-xl">Participa en Yincana</a>
+					<button class="py-2 w-full md:w-2/5 border relative">
+						<a href='/#participa' class="font-tavares text-xl block text-center">Participa en Yincana</a>
 					</button>
 					<div class='flex justify-around w-full'>
 						{stage.audios.map(audio => (
