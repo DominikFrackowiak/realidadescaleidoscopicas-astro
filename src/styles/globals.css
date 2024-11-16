@@ -1,3 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+	font-family: 'Tavares';
+	src: url('/assets/fonts/Tavares.ttf');
+}
+
+@font-face {
+	font-family: 'Galano Grotesque Medium';
+	src: url('/assets/fonts/GalanoGrotesqueMedium.otf');
+}
+
+@font-face {
+	font-family: 'Galano Grotesque Semibold';
+	src: url('/assets/fonts/GalanoGrotesqueSemiBold.otf');
+}
+
+@font-face {
+	font-family: 'Galano Grotesque Regular';
+	src: url('/assets/fonts/GalanoGrotesqueRegular.otf');
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+ 
+}
+
+body {
+	overflow-x: hidden;
+ font-family: 'Galano Grotesque Regular';
+}
+
+.voz{
+	font-weight: 900;
+}
+
+.spanish {
+	display: inline-block;
+	transform: rotate(-180deg);
+}
+
+.redOnHover:hover{
+	color: #fc3951;
+}
+
+
 .display-none{
  display: none;
 }
@@ -9,3 +59,4 @@
 .display-flex{
  display: flex;
 }
+

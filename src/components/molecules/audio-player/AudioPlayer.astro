@@ -1,9 +1,8 @@
 ---
-import { twMerge } from "tailwind-merge"
+import { twMerge } from 'tailwind-merge'
 
-const {audio, iconPause, iconPlay} = Astro.props
+const { audio, iconPause, iconPlay } = Astro.props
 ---
-
 
 <div class='flex flex-col'>
 	<button class='flex flex-col items-center gap-5 py-5'>
@@ -12,7 +11,10 @@ const {audio, iconPause, iconPlay} = Astro.props
 			<img
 				src={iconPause}
 				alt={'pause icon'}
-				class={twMerge('h-[70px] w-[80px]absolute top-0 left-0 pause-icon', 'display-none')}
+				class={twMerge(
+					'h-[70px] w-[80px]absolute top-0 left-0 pause-icon',
+					'display-none'
+				)}
 			/>
 			<img
 				src={iconPlay}
@@ -24,8 +26,12 @@ const {audio, iconPause, iconPlay} = Astro.props
 		<span class='text-2xl'>{audio.title}</span>
 	</button>
 
-	<button class='flex flex-col items-center'>
+	<button class='transcript-open-button flex flex-col items-center'>
 		<span>más info</span>
 		<span>+++</span>
 	</button>
 </div>
+
+<script>
+
+</script>

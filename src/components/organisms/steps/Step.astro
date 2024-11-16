@@ -2,27 +2,40 @@
 import { twMerge } from 'tailwind-merge'
 import stagesData from '../../../../constants/stageData'
 import AudioPlayer from '../../molecules/audio-player/AudioPlayer.astro'
+import { wrapper } from '../../../../constants/constantStyles'
 ---
 
 {
 	stagesData.map(stage => (
 		<section id={stage.category} class={twMerge(stage.backgroundColor)}>
-			<div class='flex'>
-				<img src={stage.icon} />
-				<h2>{stage.title}</h2>
-			</div>
-			<p>{stage.description}</p>
-			<button>
-				<a href='/#participa'>Participa en Yincana</a>
-			</button>
-			<div class='flex justify-center w-full gap-[150px]'>
-				{stage.audios.map(audio => (
-					<AudioPlayer
-						audio={audio}
-						iconPause={stage.iconPause}
-						iconPlay={stage.iconPlay}
-					/>
-				))}
+			<div class={wrapper}>
+				<div class='step'>
+					<div class='flex'>
+						<img src={stage.icon} />
+						<h2>{stage.title}</h2>
+					</div>
+					<p>{stage.description}</p>
+					<button>
+						<a href='/#participa'>Participa en Yincana</a>
+					</button>
+					<div class='flex justify-around w-full'>
+						{stage.audios.map(audio => (
+							<AudioPlayer
+								audio={audio}
+								iconPause={stage.iconPause}
+								iconPlay={stage.iconPlay}
+							/>
+						))}
+					</div>
+				</div>
+				<div>
+					{stage.audios.map(audio => (
+						<div class='audio-transcript display-none'>
+							<button class='close-transcript'>x</button>
+							<p set:html={audio.transcript} />
+						</div>
+					))}
+				</div>
 			</div>
 		</section>
 	))
@@ -32,6 +45,16 @@ import AudioPlayer from '../../molecules/audio-player/AudioPlayer.astro'
 	const audios = document.querySelectorAll('audio')
 	const playIcons = document.querySelectorAll('.play-icon')
 	const pauseIcons = document.querySelectorAll('.pause-icon')
+	const transcriptButtons = [
+		...document.querySelectorAll('.transcript-open-button'),
+	]
+	const audioTranscripts = [...document.querySelectorAll('.audio-transcript')]
+	const closeTranscriptButtons = [
+		...document.querySelectorAll('.close-transcript'),
+	]
+	const steps = [...document.querySelectorAll('.step')]
+
+	let isTranscriptOpen = false
 
 	playIcons.forEach((icon, i) => {
 		icon.addEventListener('click', () => {
@@ -54,4 +77,25 @@ import AudioPlayer from '../../molecules/audio-player/AudioPlayer.astro'
 			pauseIcons[i].classList.add('display-none')
 		})
 	)
+
+	transcriptButtons.forEach((button, i) => {
+		button.addEventListener('click', () => {
+			audioTranscripts.forEach(x => x.classList.add('display-none'))
+			audioTranscripts[i].classList.remove('display-none')
+			const section = audioTranscripts[i].closest('section')
+			steps.forEach(step => step.classList.remove('display-none'))
+			const step = section?.querySelector('.step')
+			step?.classList.add('display-none')
+		})
+	})
+
+	closeTranscriptButtons.forEach((button, i) => {
+		button.addEventListener('click', () => {
+			// audioTranscripts.forEach(x => x.classList.add('display-none'))
+			audioTranscripts[i].classList.add('display-none')
+			const section = audioTranscripts[i].closest('section')
+			const step = section?.querySelector('.step')
+			step?.classList.remove('display-none')
+		})
+	})
 </script>
