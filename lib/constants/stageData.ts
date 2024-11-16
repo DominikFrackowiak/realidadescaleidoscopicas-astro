@@ -1,4 +1,4 @@
-import { type StageProps } from "../types/types"
+import { type StageProps } from '../types/types'
 
 const stagesData: StageProps[] = [
 	{

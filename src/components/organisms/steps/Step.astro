@@ -1,22 +1,23 @@
 ---
 import { twMerge } from 'tailwind-merge'
-import stagesData from '../../../../constants/stageData'
+import stagesData from '../../../../lib/constants/stageData'
 import AudioPlayer from '../../molecules/audio-player/AudioPlayer.astro'
-import { wrapper } from '../../../../constants/constantStyles'
+// import { wrapper } from '../../../../constants/constantStyles'
+const wrapper = 'flex flex-col mx-[10px] md:mx-auto w-full px-4 max-w-[280px] md:max-w-[720px] lg:max-w-[1140px] gap-[40px]'
 ---
 
 {
 	stagesData.map(stage => (
-		<section id={stage.category} class={twMerge(stage.backgroundColor)}>
-			<div class={wrapper}>
-				<div class='step'>
-					<div class='flex'>
-						<img src={stage.icon} />
-						<h2>{stage.title}</h2>
+		<section id={stage.category} class={twMerge(stage.backgroundColor, 'py-20')}>
+			
+				<div class={twMerge(wrapper, 'step')}>
+					<div class='flex gap-[10px] items-center h-[60px]'>
+						<img src={stage.icon} class="w-[50px] h-[50px]"/>
+						<h2 class="text-4xl font-tavares mt-[9px] font-bold">{stage.title}</h2>
 					</div>
-					<p>{stage.description}</p>
-					<button>
-						<a href='/#participa'>Participa en Yincana</a>
+					<p class="text-xl">{stage.description}</p>
+					<button class="py-2 w-full md:w-2/5 self-center border">
+						<a href='/#participa' class="font-tavares text-xl">Participa en Yincana</a>
 					</button>
 					<div class='flex justify-around w-full'>
 						{stage.audios.map(audio => (
@@ -36,7 +37,7 @@ import { wrapper } from '../../../../constants/constantStyles'
 						</div>
 					))}
 				</div>
-			</div>
+			
 		</section>
 	))
 }
@@ -99,3 +100,4 @@ import { wrapper } from '../../../../constants/constantStyles'
 		})
 	})
 </script>
+../../../../lib/constants/stageData
