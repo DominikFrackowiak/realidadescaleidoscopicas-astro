@@ -8,7 +8,7 @@ const wrapper = 'flex flex-col mx-[10px] md:mx-auto w-full px-4 max-w-[280px] md
 
 {
 	stagesData.map(stage => (
-		<section id={stage.category} class={twMerge(stage.backgroundColor, 'py-20')}>
+		<section id={stage.category} class={twMerge(stage.backgroundColor, 'py-20 min-h-[100vh]')}>
 			
 				<div class={twMerge(wrapper, 'step')}>
 					<div class='flex gap-[10px] items-center h-[60px]'>
