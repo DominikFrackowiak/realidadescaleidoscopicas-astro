@@ -43,62 +43,74 @@ const wrapper = 'flex flex-col mx-[10px] md:mx-auto w-full px-4 max-w-[280px] md
 }
 
 <script is:inline>
-	document.addEventListener('DOMContentLoaded', () => {
-	const audios = document.querySelectorAll('audio')
-	const playIcons = document.querySelectorAll('.play-icon')
-	const pauseIcons = document.querySelectorAll('.pause-icon')
-	const transcriptButtons = [
-		...document.querySelectorAll('.transcript-open-button'),
-	]
-	const audioTranscripts = [...document.querySelectorAll('.audio-transcript')]
-	const closeTranscriptButtons = [
-		...document.querySelectorAll('.close-transcript'),
-	]
-	const steps = [...document.querySelectorAll('.step')]
+  document.addEventListener('DOMContentLoaded', () => {
+    const audios = document.querySelectorAll('audio');
+    const playIcons = document.querySelectorAll('.play-icon');
+    const pauseIcons = document.querySelectorAll('.pause-icon');
+    const transcriptButtons = Array.from(document.querySelectorAll('.transcript-open-button'));
+    const audioTranscripts = Array.from(document.querySelectorAll('.audio-transcript'));
+    const closeTranscriptButtons = Array.from(document.querySelectorAll('.close-transcript'));
+    const steps = Array.from(document.querySelectorAll('.step'));
 
-	let isTranscriptOpen = false
+    // Upewnij się, że elementy są początkowo ukryte
+    audioTranscripts.forEach(transcript => {
+      transcript.style.display = 'none';
+    });
+    pauseIcons.forEach(icon => {
+      icon.style.display = 'none';
+    });
 
-	playIcons.forEach((icon, i) => {
-		icon.addEventListener('click', () => {
-			audios.forEach((audio, index) => {
-				audio.pause()
-				playIcons[index].classList.remove('display-none')
-				pauseIcons[index].classList.add('display-none')
-			})
+    let isTranscriptOpen = false;
 
-			audios[i].play()
-			playIcons[i].classList.add('display-none')
-			pauseIcons[i].classList.remove('display-none')
-		})
-	})
+    playIcons.forEach((icon, i) => {
+      icon.addEventListener('click', () => {
+        audios.forEach((audio, index) => {
+          audio.pause();
+          playIcons[index].style.display = 'block';
+          pauseIcons[index].style.display = 'none';
+        });
 
-	pauseIcons.forEach((icon, i) =>
-		icon.addEventListener('click', () => {
-			audios[i].pause()
-			playIcons[i].classList.remove('display-none')
-			pauseIcons[i].classList.add('display-none')
-		})
-	)
+        audios[i].play();
+        playIcons[i].style.display = 'none';
+        pauseIcons[i].style.display = 'block';
+      });
+    });
 
-	transcriptButtons.forEach((button, i) => {
-		button.addEventListener('click', () => {
-			audioTranscripts.forEach(x => x.classList.add('display-none'))
-			audioTranscripts[i].classList.remove('display-none')
-			const section = audioTranscripts[i].closest('section')
-			steps.forEach(step => step.classList.remove('display-none'))
-			const step = section?.querySelector('.step')
-			step?.classList.add('display-none')
-		})
-	})
+    pauseIcons.forEach((icon, i) => {
+      icon.addEventListener('click', () => {
+        audios[i].pause();
+        playIcons[i].style.display = 'block';
+        pauseIcons[i].style.display = 'none';
+      });
+    });
 
-	closeTranscriptButtons.forEach((button, i) => {
-		button.addEventListener('click', () => {
-			// audioTranscripts.forEach(x => x.classList.add('display-none'))
-			audioTranscripts[i].classList.add('display-none')
-			const section = audioTranscripts[i].closest('section')
-			const step = section?.querySelector('.step')
-			step?.classList.remove('display-none')
-		})
-	})
-})
+    transcriptButtons.forEach((button, i) => {
+      button.addEventListener('click', () => {
+        audioTranscripts.forEach(x => {
+          x.style.display = 'none';
+        });
+        audioTranscripts[i].style.display = 'block';
+        
+        const section = audioTranscripts[i].closest('section');
+        steps.forEach(step => {
+          step.style.display = 'block';
+        });
+        const step = section?.querySelector('.step');
+        if (step) {
+          step.style.display = 'none';
+        }
+      });
+    });
+
+    closeTranscriptButtons.forEach((button, i) => {
+      button.addEventListener('click', () => {
+        audioTranscripts[i].style.display = 'none';
+        const section = audioTranscripts[i].closest('section');
+        const step = section?.querySelector('.step');
+        if (step) {
+          step.style.display = 'block';
+        }
+      });
+    });
+  });
 </script>
