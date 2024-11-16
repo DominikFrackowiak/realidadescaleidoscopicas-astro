@@ -8,47 +8,37 @@ const wrapper = 'flex flex-col mx-[10px] md:mx-auto w-full px-4 max-w-[280px] md
 
 {
 	stagesData.map(stage => (
-		<!-- Kontener główny - dodajemy min-height i zachowujemy stałe wymiary -->
-<section id={stage.category} class={twMerge(stage.backgroundColor, 'py-20 relative')}>
-  <div class={twMerge(wrapper, 'step min-h-[400px] flex flex-col items-center justify-start gap-[40px]')}>
-    <!-- Header section -->
-    <div class='flex gap-[10px] items-center h-[60px] w-full'>
-      <img src={stage.icon} class="w-[50px] h-[50px]"/>
-      <h2 class="text-4xl font-tavares mt-[9px] font-bold">{stage.title}</h2>
-    </div>
-    
-    <!-- Description -->
-    <p class="text-xl w-full">{stage.description}</p>
-    
-    <!-- Button - dodajemy własny kontener z określoną szerokością -->
-    <div class="w-full flex justify-center">
-      <button class="py-2 w-full md:w-2/5 border text-center">
-        <a href='/#participa' class="font-tavares text-xl block">Participa en Yincana</a>
-      </button>
-    </div>
-    
-    <!-- Audio players -->
-    <div class='flex justify-around w-full mt-auto'>
-      {stage.audios.map(audio => (
-        <AudioPlayer
-          audio={audio}
-          iconPause={stage.iconPause}
-          iconPlay={stage.iconPlay}
-        />
-      ))}
-    </div>
-  </div>
-
-  <!-- Transcripts container -->
-  <div class="w-full max-w-[280px] md:max-w-[720px] lg:max-w-[1140px] mx-auto">
-    {stage.audios.map(audio => (
-      <div class='audio-transcript hidden absolute top-0 left-0 w-full bg-inherit p-4'>
-        <button class='close-transcript absolute top-4 right-4 p-2'>x</button>
-        <p set:html={audio.transcript} />
-      </div>
-    ))}
-  </div>
-</section>
+		<section id={stage.category} class={twMerge(stage.backgroundColor, 'py-20')}>
+			
+				<div class={twMerge(wrapper, 'step')}>
+					<div class='flex gap-[10px] items-center h-[60px]'>
+						<img src={stage.icon} class="w-[50px] h-[50px]"/>
+						<h2 class="text-4xl font-tavares mt-[9px] font-bold">{stage.title}</h2>
+					</div>
+					<p class="text-xl">{stage.description}</p>
+					<button class="py-2 w-full md:w-2/5 border relative">
+						<a href='/#participa' class="font-tavares text-xl block text-center">Participa en Yincana</a>
+					</button>
+					<div class='flex justify-around w-full'>
+						{stage.audios.map(audio => (
+							<AudioPlayer
+								audio={audio}
+								iconPause={stage.iconPause}
+								iconPlay={stage.iconPlay}
+							/>
+						))}
+					</div>
+				</div>
+				<div>
+					{stage.audios.map(audio => (
+						<div class='audio-transcript display-none'>
+							<button class='close-transcript'>x</button>
+							<p set:html={audio.transcript} />
+						</div>
+					))}
+				</div>
+			
+		</section>
 	))
 }
 
@@ -62,51 +52,65 @@ const wrapper = 'flex flex-col mx-[10px] md:mx-auto w-full px-4 max-w-[280px] md
     const closeTranscriptButtons = Array.from(document.querySelectorAll('.close-transcript'));
     const steps = Array.from(document.querySelectorAll('.step'));
 
-    // Początkowy stan
-    const resetLayout = () => {
-      steps.forEach(step => {
-        step.style.display = 'flex';
-        step.style.opacity = '1';
-      });
-      audioTranscripts.forEach(transcript => {
-        transcript.style.display = 'none';
-      });
-    };
+    // Upewnij się, że elementy są początkowo ukryte
+    audioTranscripts.forEach(transcript => {
+      transcript.style.display = 'none';
+    });
+    pauseIcons.forEach(icon => {
+      icon.style.display = 'none';
+    });
 
-    resetLayout();
+    let isTranscriptOpen = false;
+
+    playIcons.forEach((icon, i) => {
+      icon.addEventListener('click', () => {
+        audios.forEach((audio, index) => {
+          audio.pause();
+          playIcons[index].style.display = 'block';
+          pauseIcons[index].style.display = 'none';
+        });
+
+        audios[i].play();
+        playIcons[i].style.display = 'none';
+        pauseIcons[i].style.display = 'block';
+      });
+    });
+
+    pauseIcons.forEach((icon, i) => {
+      icon.addEventListener('click', () => {
+        audios[i].pause();
+        playIcons[i].style.display = 'block';
+        pauseIcons[i].style.display = 'none';
+      });
+    });
 
     transcriptButtons.forEach((button, i) => {
       button.addEventListener('click', () => {
-        const section = button.closest('section');
+        audioTranscripts.forEach(x => {
+          x.style.display = 'none';
+        });
+        audioTranscripts[i].style.display = 'block';
+        
+        const section = audioTranscripts[i].closest('section');
+        steps.forEach(step => {
+          step.style.display = 'block';
+        });
         const step = section?.querySelector('.step');
-        const transcript = audioTranscripts[i];
-
-        if (step && transcript) {
-          step.style.opacity = '0';
-          setTimeout(() => {
-            step.style.display = 'none';
-            transcript.style.display = 'block';
-          }, 300);
+        if (step) {
+          step.style.display = 'none';
         }
       });
     });
 
     closeTranscriptButtons.forEach((button, i) => {
       button.addEventListener('click', () => {
-        const section = button.closest('section');
+        audioTranscripts[i].style.display = 'none';
+        const section = audioTranscripts[i].closest('section');
         const step = section?.querySelector('.step');
-        const transcript = audioTranscripts[i];
-
-        if (step && transcript) {
-          transcript.style.display = 'none';
-          step.style.display = 'flex';
-          setTimeout(() => {
-            step.style.opacity = '1';
-          }, 50);
+        if (step) {
+          step.style.display = 'block';
         }
       });
     });
-
-    // Reszta kodu dla obsługi audio pozostaje bez zmian
   });
 </script>
