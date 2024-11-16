@@ -3,7 +3,7 @@ import vercel from '@astrojs/vercel/serverless'
 import tailwind from '@astrojs/tailwind'
 
 export default defineConfig({
-	output: 'hybrid',
+	output: 'server',
 	integrations: [tailwind()],
 	adapter: vercel(),
 })
