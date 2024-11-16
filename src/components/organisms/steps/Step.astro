@@ -1,120 +1,3 @@
-<!-- ---
-import { twMerge } from 'tailwind-merge'
-import stagesData from '../../../../lib/constants/stageData'
-import AudioPlayer from '../../molecules/audio-player/AudioPlayer.astro'
-import Transcript from './Transcript.astro'
-// import { wrapper } from '../../../../constants/constantStyles'
-const wrapper = 'flex flex-col mx-[10px] md:mx-auto w-full px-4 max-w-[280px] md:max-w-[720px] lg:max-w-[1140px] gap-[40px] '
----
-
-{
-	stagesData.map(stage => (
-		<section id={stage.category} class={twMerge(stage.backgroundColor, 'py-20 min-h-[100vh]')}>
-			
-				<div class={twMerge(wrapper, 'step')}>
-					<div class='flex gap-[10px] items-center h-[60px]'>
-						<img src={stage.icon} class="w-[50px] h-[50px]"/>
-						<h2 class="text-4xl font-tavares mt-[9px] font-bold">{stage.title}</h2>
-					</div>
-					<p class="text-xl">{stage.description}</p>
-					<button class="py-2 w-full md:w-2/5 border relative mx-auto">
-						<a href='/#participa' class="font-tavares text-xl block text-center">Participa en Yincana</a>
-					</button>
-					<div class='flex justify-around w-full'>
-						{stage.audios.map(audio => (
-							<AudioPlayer
-								audio={audio}
-								iconPause={stage.iconPause}
-								iconPlay={stage.iconPlay}
-							/>
-						))}
-					</div>
-				</div>
-				
-		</section>
-    <section class={twMerge(wrapper, 'py-20 min-h-[100vh]')}>
-    			{stage.audios.map(audio => (<Transcript audio={audio}/>))}
-    </section>
-    
-	))
-}
-
-
-
-<script is:inline>
-  document.addEventListener('DOMContentLoaded', () => {
-    const audios = document.querySelectorAll('audio');
-    const playIcons = document.querySelectorAll('.play-icon');
-    const pauseIcons = document.querySelectorAll('.pause-icon');
-    const transcriptButtons = Array.from(document.querySelectorAll('.transcript-open-button'));
-    const audioTranscripts = Array.from(document.querySelectorAll('.audio-transcript'));
-    const closeTranscriptButtons = Array.from(document.querySelectorAll('.close-transcript'));
-    const steps = Array.from(document.querySelectorAll('.step'));
-
-    // Upewnij się, że elementy są początkowo ukryte
-    audioTranscripts.forEach(transcript => {
-      transcript.style.display = 'none';
-    });
-    pauseIcons.forEach(icon => {
-      icon.style.display = 'none';
-    });
-
-    let isTranscriptOpen = false;
-
-    playIcons.forEach((icon, i) => {
-      icon.addEventListener('click', () => {
-        audios.forEach((audio, index) => {
-          audio.pause();
-          playIcons[index].style.display = 'block';
-          pauseIcons[index].style.display = 'none';
-        });
-
-        audios[i].play();
-        playIcons[i].style.display = 'none';
-        pauseIcons[i].style.display = 'block';
-      });
-    });
-
-    pauseIcons.forEach((icon, i) => {
-      icon.addEventListener('click', () => {
-        audios[i].pause();
-        playIcons[i].style.display = 'block';
-        pauseIcons[i].style.display = 'none';
-      });
-    });
-
-  //   transcriptButtons.forEach((button, i) => {
-  //     button.addEventListener('click', () => {
-  //       audioTranscripts.forEach(x => {
-  //         x.style.display = 'none';
-  //       });
-  //       audioTranscripts[i].style.display = 'block';
-        
-  //       const section = audioTranscripts[i].closest('section');
-  //       steps.forEach(step => {
-  //         step.style.display = 'block';
-  //       });
-  //       const step = section?.querySelector('.step');
-  //       if (step) {
-  //         step.style.display = 'none';
-  //       }
-  //     });
-  //   });
-
-  //   closeTranscriptButtons.forEach((button, i) => {
-  //     button.addEventListener('click', () => {
-  //       audioTranscripts[i].style.display = 'none';
-  //       const section = audioTranscripts[i].closest('section');
-  //       const step = section?.querySelector('.step');
-  //       if (step) {
-  //         step.style.display = 'block';
-  //       }
-  //     });
-  //   });
-   });
-  
-</script> -->
-
 ---
 import { twMerge } from 'tailwind-merge'
 import stagesData from '../../../../lib/constants/stageData'
@@ -126,7 +9,7 @@ const wrapper = 'flex flex-col mx-[10px] md:mx-auto w-full px-4 max-w-[280px] md
 
 {
   stagesData.map((stage, stageIndex) => (
-    <div class="stage-container">
+    // <div class="stage-container">
       <section 
         id={`stage-${stage.category}`} 
         class={twMerge(stage.backgroundColor, 'py-20 min-h-[100vh] main-section')}
@@ -134,11 +17,11 @@ const wrapper = 'flex flex-col mx-[10px] md:mx-auto w-full px-4 max-w-[280px] md
         <div class={twMerge(wrapper, 'step')}>
           <div class='flex gap-[10px] items-center h-[60px]'>
             <img src={stage.icon} class="w-[50px] h-[50px]"/>
-            <h2 class="text-4xl font-tavares mt-[9px] font-bold">{stage.title}</h2>
+            <h2 class={twMerge(stage.titleColor,"text-4xl font-tavares mt-[9px] font-bold")}>{stage.title}</h2>
           </div>
-          <p class="text-xl">{stage.description}</p>
-          <button class="py-2 w-full md:w-2/5 border relative mx-auto">
-            <a href='/#participa' class="font-tavares text-xl block text-center">
+          <p class={twMerge(stage.descriptionColor, "text-xl")}>{stage.description}</p>
+          <button class={twMerge(stage.buttonBgColor, stage.buttonBgColorOnHover, "py-2 w-full md:w-2/5 relative mx-auto")}>
+            <a href='/#participa' class={twMerge("font-tavares text-xl text-white block text-center")}>
               Participa en Yincana
             </a>
           </button>
@@ -149,6 +32,8 @@ const wrapper = 'flex flex-col mx-[10px] md:mx-auto w-full px-4 max-w-[280px] md
                   audio={audio}
                   iconPause={stage.iconPause}
                   iconPlay={stage.iconPlay}
+                  hrColor={stage.borderColor}
+                  textColor={stage.audioTextColor}
                 />
                 <button 
                   class="transcript-open-button"
@@ -164,12 +49,12 @@ const wrapper = 'flex flex-col mx-[10px] md:mx-auto w-full px-4 max-w-[280px] md
       </section>
 
       <section 
-        class={twMerge(wrapper, 'py-20 min-h-[100vh] transcript-section')}
+        class={twMerge(stage.transcriptBgColor, 'py-20 min-h-[100vh] transcript-section')}
         style="display: none;"
       >
         {stage.audios.map((audio, audioIndex) => (
           <div 
-            class="audio-transcript" 
+            class={twMerge(wrapper, "audio-transcript")} 
             data-stage={stageIndex}
             data-audio={audioIndex}
             style="display: none;"
@@ -185,7 +70,7 @@ const wrapper = 'flex flex-col mx-[10px] md:mx-auto w-full px-4 max-w-[280px] md
           </div>
         ))}
       </section>
-    </div>
+    // </div>
   ))
 }
 
