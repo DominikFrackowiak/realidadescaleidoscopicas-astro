@@ -1,7 +1,7 @@
 ---
 import { twMerge } from 'tailwind-merge'
 
-const { audio, iconPause, iconPlay, hrColor, textColor } = Astro.props
+const { audio, iconPause, iconPlay, hrColor, textColor, stageIndex, audioIndex } = Astro.props
 ---
 
 <div class='flex flex-col'>
@@ -28,7 +28,9 @@ const { audio, iconPause, iconPlay, hrColor, textColor } = Astro.props
 
 	<hr class={twMerge(hrColor, "h-[2px] mx-auto w-4/5 mt-3 mb-3 border-none")}>
 
-	<button class='transcript-open-button flex flex-col items-center'>
+	<button class='transcript-open-button flex flex-col items-center transcript-open-button'
+                data-stage={stageIndex}
+                data-audio={audioIndex}>
 		<span class={twMerge(textColor)}>más info</span>
 		<span class={twMerge(textColor)}>+++</span>
 	</button>

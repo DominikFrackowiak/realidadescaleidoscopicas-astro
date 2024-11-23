@@ -1,13 +1,29 @@
 ---
-const {audio} = Astro.props
+import { twMerge } from "tailwind-merge";
+const {audio, stageIndex, audioIndex} = Astro.props
+const wrapper = 'flex flex-col gap-[40px]'
 ---
 
-   
-		
-						<div>
-							<button class='close-transcript'>x</button>
-							<p class='text-white' set:html={audio.transcript} />
+     
+		    <div class="flex justify-between w-full">
+						<h3 class='text-white text-xl'>{audio.title}</h3>
+          <button 
+            class="close-transcript"
+            data-stage={stageIndex}
+            data-audio={audioIndex}
+          >
+            <span class="text-white text-xl" 
+            >x</span> 
+          </button>
 						</div>
+							<p class='text-white' set:html={audio.transcript} />
+							<p class="text-white">Los textos están basados en el libro de Rachele Borghi, 2020,
+					<i>Decolonialitá e
+						privilegio</i> .
+				</p>
+				
+			
+						
 				
 	
 			
