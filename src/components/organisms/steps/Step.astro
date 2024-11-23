@@ -1,101 +1,171 @@
 ---
 import { twMerge } from 'tailwind-merge'
-import stagesData from '../../../../constants/stageData'
+import stagesData from '../../../../lib/constants/stageData'
 import AudioPlayer from '../../molecules/audio-player/AudioPlayer.astro'
-import { wrapper } from '../../../../constants/constantStyles'
+import Transcript from './Transcript.astro'
+
+const wrapper = 'flex flex-col mx-[10px] md:mx-auto w-full px-4 max-w-[280px] md:max-w-[720px] lg:max-w-[1140px] gap-[40px] '
 ---
 
 {
-	stagesData.map(stage => (
-		<section id={stage.category} class={twMerge(stage.backgroundColor)}>
-			<div class={wrapper}>
-				<div class='step'>
-					<div class='flex'>
-						<img src={stage.icon} />
-						<h2>{stage.title}</h2>
-					</div>
-					<p>{stage.description}</p>
-					<button>
-						<a href='/#participa'>Participa en Yincana</a>
-					</button>
-					<div class='flex justify-around w-full'>
-						{stage.audios.map(audio => (
-							<AudioPlayer
-								audio={audio}
-								iconPause={stage.iconPause}
-								iconPlay={stage.iconPlay}
-							/>
-						))}
-					</div>
-				</div>
-				<div>
-					{stage.audios.map(audio => (
-						<div class='audio-transcript display-none'>
-							<button class='close-transcript'>x</button>
-							<p set:html={audio.transcript} />
-						</div>
-					))}
-				</div>
-			</div>
-		</section>
-	))
+  stagesData.map((stage, stageIndex) => (
+    // <div class="stage-container">
+      <section 
+        id={`stage-${stage.category}`} 
+        class={twMerge(stage.backgroundColor, 'py-20 min-h-[100vh] main-section')}
+      >
+        <div class={twMerge(wrapper, 'step')}>
+          <div class='flex gap-[10px] items-center h-[60px]'>
+            <img src={stage.icon} class="w-[50px] h-[50px]"/>
+            <h2 class={twMerge(stage.titleColor,"text-4xl font-tavares mt-[9px] font-bold")}>{stage.title}</h2>
+          </div>
+          <p class={twMerge(stage.descriptionColor, "text-xl")}>{stage.description}</p>
+          <button class={twMerge(stage.buttonBgColor, stage.buttonBgColorOnHover, "py-2 w-full md:w-2/5 relative mx-auto")}>
+            <a href='/#participa' class={twMerge("font-tavares text-xl text-white block text-center")}>
+              Participa en Yincana
+            </a>
+          </button>
+          <div class='flex justify-around w-full'>
+            {stage.audios.map((audio, audioIndex) => (
+              <div class="audio-container">
+                <AudioPlayer
+                  audio={audio}
+                  iconPause={stage.iconPause}
+                  iconPlay={stage.iconPlay}
+                  hrColor={stage.borderColor}
+                  textColor={stage.audioTextColor}
+                />
+                <button 
+                  class="transcript-open-button"
+                  data-stage={stageIndex}
+                  data-audio={audioIndex}
+                >
+                  Pokaż transkrypt
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section 
+        class={twMerge(stage.transcriptBgColor, 'py-20 min-h-[100vh] transcript-section')}
+        style="display: none;"
+      >
+        {stage.audios.map((audio, audioIndex) => (
+          <div 
+            class={twMerge(wrapper, "audio-transcript")} 
+            data-stage={stageIndex}
+            data-audio={audioIndex}
+            style="display: none;"
+          >
+            <button 
+              class="close-transcript"
+              data-stage={stageIndex}
+              data-audio={audioIndex}
+            >
+              Zamknij transkrypt
+            </button>
+            <Transcript audio={audio}/>
+          </div>
+        ))}
+      </section>
+    // </div>
+  ))
 }
 
 <script>
-	const audios = document.querySelectorAll('audio')
-	const playIcons = document.querySelectorAll('.play-icon')
-	const pauseIcons = document.querySelectorAll('.pause-icon')
-	const transcriptButtons = [
-		...document.querySelectorAll('.transcript-open-button'),
-	]
-	const audioTranscripts = [...document.querySelectorAll('.audio-transcript')]
-	const closeTranscriptButtons = [
-		...document.querySelectorAll('.close-transcript'),
-	]
-	const steps = [...document.querySelectorAll('.step')]
+  document.addEventListener('DOMContentLoaded', () => {
+    const audios = document.querySelectorAll<HTMLAudioElement>('audio');
+    const playIcons = document.querySelectorAll<HTMLDivElement>('.play-icon');
+    const pauseIcons = document.querySelectorAll<HTMLDivElement>('.pause-icon');
+    const transcriptButtons = document.querySelectorAll<HTMLButtonElement>('.transcript-open-button');
+    const audioTranscripts = document.querySelectorAll<HTMLDivElement>('.audio-transcript');
+    const closeTranscriptButtons = document.querySelectorAll<HTMLButtonElement>('.close-transcript');
+    const mainSections = document.querySelectorAll<HTMLDivElement>('.main-section');
+    const transcriptSections = document.querySelectorAll<HTMLDivElement>('.transcript-section');
 
-	let isTranscriptOpen = false
+    // Obsługa audio
+    pauseIcons.forEach((icon) => {
+      icon.style.display = 'none';
+    });
 
-	playIcons.forEach((icon, i) => {
-		icon.addEventListener('click', () => {
-			audios.forEach((audio, index) => {
-				audio.pause()
-				playIcons[index].classList.remove('display-none')
-				pauseIcons[index].classList.add('display-none')
-			})
+    playIcons.forEach((icon, i) => {
+      icon.addEventListener('click', () => {
+        audios.forEach((audio, index) => {
+          audio.pause();
+          playIcons.item(index).style.display = 'block';
+          pauseIcons.item(index).style.display = 'none';
+        });
 
-			audios[i].play()
-			playIcons[i].classList.add('display-none')
-			pauseIcons[i].classList.remove('display-none')
-		})
-	})
+        audios.item(i).play();
+        icon.style.display = 'none';
+        pauseIcons.item(i).style.display = 'block';
+      });
+    });
 
-	pauseIcons.forEach((icon, i) =>
-		icon.addEventListener('click', () => {
-			audios[i].pause()
-			playIcons[i].classList.remove('display-none')
-			pauseIcons[i].classList.add('display-none')
-		})
-	)
+    pauseIcons.forEach((icon, i) => {
+      icon.addEventListener('click', () => {
+        audios.item(i).pause();
+        playIcons.item(i).style.display = 'block';
+        icon.style.display = 'none';
+      });
+    });
 
-	transcriptButtons.forEach((button, i) => {
-		button.addEventListener('click', () => {
-			audioTranscripts.forEach(x => x.classList.add('display-none'))
-			audioTranscripts[i].classList.remove('display-none')
-			const section = audioTranscripts[i].closest('section')
-			steps.forEach(step => step.classList.remove('display-none'))
-			const step = section?.querySelector('.step')
-			step?.classList.add('display-none')
-		})
-	})
+    // Logika transkryptów
+    transcriptButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const stageIndex = button.getAttribute('data-stage');
+        const audioIndex = button.getAttribute('data-audio');
 
-	closeTranscriptButtons.forEach((button, i) => {
-		button.addEventListener('click', () => {
-			// audioTranscripts.forEach(x => x.classList.add('display-none'))
-			audioTranscripts[i].classList.add('display-none')
-			const section = audioTranscripts[i].closest('section')
-			const step = section?.querySelector('.step')
-			step?.classList.remove('display-none')
-		})
-	})
+        if (stageIndex !== null) {
+          const idx = parseInt(stageIndex);
+          
+          // Ukryj główną sekcję
+          mainSections.item(idx).style.display = 'none';
+          
+          // Pokaż sekcję transkryptów
+          transcriptSections.item(idx).style.display = 'block';
+          
+          // Ukryj wszystkie transkrypty w tej sekcji
+          audioTranscripts.forEach((transcript) => {
+            if (transcript.getAttribute('data-stage') === stageIndex) {
+              transcript.style.display = 'none';
+            }
+          });
+
+          // Pokaż odpowiedni transkrypt
+          const targetTranscript = document.querySelector<HTMLDivElement>(
+            `.audio-transcript[data-stage="${stageIndex}"][data-audio="${audioIndex}"]`
+          );
+          if (targetTranscript) {
+            targetTranscript.style.display = 'block';
+          }
+        }
+      });
+    });
+
+    closeTranscriptButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const stageIndex = button.getAttribute('data-stage');
+        
+        if (stageIndex !== null) {
+          const idx = parseInt(stageIndex);
+          
+          // Ukryj sekcję transkryptów
+          transcriptSections.item(idx).style.display = 'none';
+          
+          // Pokaż główną sekcję
+          mainSections.item(idx).style.display = 'block';
+          
+          // Ukryj wszystkie transkrypty
+          audioTranscripts.forEach((transcript) => {
+            if (transcript.getAttribute('data-stage') === stageIndex) {
+              transcript.style.display = 'none';
+            }
+          });
+        }
+      });
+    });
+  });
 </script>

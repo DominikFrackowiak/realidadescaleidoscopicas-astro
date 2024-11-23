@@ -1,4 +1,4 @@
-import { type StageProps } from "../types/types"
+import { type StageProps } from '../types/types'
 
 const stagesData: StageProps[] = [
 	{
@@ -8,16 +8,16 @@ const stagesData: StageProps[] = [
 		category: 'cuidados',
 		description:
 			'El concepto de “cuidados” es muy amplio, sin embargo, todas sus acepciones se ven atravesadas y marcadas por los diferentes ejes de desigualdad como él género, la raza, la clase social o la edad. Haciendo que su responsabilidad caiga la mayoría de las veces sobre las mismas personas perpetuando así las desigualdades estructurales ya existentes.',
-		titleColor: 'white',
+		titleColor: 'text-white',
 		backgroundColor: 'bg-lightRed',
 		transcriptBgColor: 'bg-lightRed',
-		descriptionColor: 'white',
-		buttonBgColor: 'darkBlue',
-		buttonBgColorOnHover: 'lightBlue',
+		descriptionColor: 'text-white',
+		buttonBgColor: 'bg-darkBlue',
+		buttonBgColorOnHover: 'hover:bg-lightBlue',
 		iconPlay: '/assets/images/play_white.png',
 		iconPause: '/assets/images/pause_white.png',
-		borderColor: 'darkBlue',
-		audioTextColor: 'white',
+		borderColor: 'bg-darkBlue',
+		audioTextColor: 'text-white',
 		audios: [
 			{
 				id: 1,
@@ -52,16 +52,16 @@ const stagesData: StageProps[] = [
 		category: 'educacion',
 		description:
 			'La educación, es un derecho universal, un elemento fundamental para el logro efectivo de los otros derechos y una de las más poderosas herramientas de transformación social. Sin embargo, las metodologías, valores y contenidos que la caracterizan pueden facilitar o frenar su fundamental papel en el proceso de construcción de una realidad más justa y sostenible.',
-		titleColor: 'lightRed',
+		titleColor: 'text-lightRed',
 		backgroundColor: 'bg-lightBlue',
 		transcriptBgColor: 'bg-lightBlue',
-		descriptionColor: 'white',
-		buttonBgColor: 'lightRed',
-		buttonBgColorOnHover: 'darkRed',
+		descriptionColor: 'text-white',
+		buttonBgColor: 'bg-lightRed',
+		buttonBgColorOnHover: 'hover:bg-darkRed',
 		iconPlay: '/assets/images/play_white.png',
 		iconPause: '/assets/images/pause_white.png',
-		borderColor: 'lightRed',
-		audioTextColor: 'white',
+		borderColor: 'bg-lightRed',
+		audioTextColor: 'text-white',
 		audios: [
 			{
 				id: 1,
@@ -96,16 +96,16 @@ const stagesData: StageProps[] = [
 		category: 'sanidad',
 		description:
 			'Alcanzar la cobertura sanitaria universal es uno de los Objetivos de Desarrollo Sostenible que se quieren conseguir antes de 2030. A día de hoy casi la mitad de la población a nivel mundial carece del acceso integral a los servicios de salud mientras se sigue reivindicando desde distintos colectivos un sistema sanitario que respete y proteja su integridad física y psíquica.',
-		titleColor: 'darkBlue',
-		backgroundColor: 'white',
-		transcriptBgColor: 'lightBlue',
-		descriptionColor: 'lightRed',
-		buttonBgColor: 'darkBlue',
-		buttonBgColorOnHover: 'lightBlue',
+		titleColor: 'text-darkBlue',
+		backgroundColor: 'bg-white',
+		transcriptBgColor: 'bg-lightBlue',
+		descriptionColor: 'text-lightRed',
+		buttonBgColor: 'bg-darkBlue',
+		buttonBgColorOnHover: 'hover:bg-lightBlue',
 		iconPlay: '/assets/images/play_lightblue.png',
 		iconPause: '/assets/images/pause_lightblue.png',
-		borderColor: 'lightRed',
-		audioTextColor: 'lightBlue',
+		borderColor: 'bg-lightRed',
+		audioTextColor: 'text-lightBlue',
 		audios: [
 			{
 				id: 1,
@@ -140,16 +140,16 @@ const stagesData: StageProps[] = [
 		category: 'cultura',
 		description:
 			'Los modelos culturales hegemónicos, la mayoría de las veces, no solamente no representan las minorías, sino que les quitan las herramientas para hablar de su propia experiencia. ¿Qué entendemos por cultura? ¿Qué entendemos con la palabra “conocimientos”? ¿Quién los genera y quien los legitima?',
-		titleColor: 'white',
-		backgroundColor: 'lightRed',
-		transcriptBgColor: 'lightRed',
-		descriptionColor: 'white',
-		buttonBgColor: 'darkBlue',
-		buttonBgColorOnHover: 'lightBlue',
+		titleColor: 'text-white',
+		backgroundColor: 'bg-lightRed',
+		transcriptBgColor: 'bg-lightRed',
+		descriptionColor: 'text-white',
+		buttonBgColor: 'bg-darkBlue',
+		buttonBgColorOnHover: 'hover:bg-lightBlue',
 		iconPlay: '/assets/images/play_white.png',
 		iconPause: '/assets/images/pause_white.png',
-		borderColor: 'darkBlue',
-		audioTextColor: 'white',
+		borderColor: 'bg-darkBlue',
+		audioTextColor: 'text-white',
 		audios: [
 			{
 				id: 1,
@@ -184,16 +184,16 @@ const stagesData: StageProps[] = [
 		category: 'vivienda',
 		description:
 			'El derecho a una vivienda digna se sigue reivindicando desde distintos colectivos. Sin embargo, el camino para garantizar que todas las personas puedan disfrutar de este derecho, independientemente de su origen, género, identidad sexual, raza, clase social o la edad sigue siendo largo.',
-		titleColor: 'lightRed',
-		backgroundColor: 'lightBlue',
-		transcriptBgColor: 'lightBlue',
-		descriptionColor: 'white',
-		buttonBgColor: 'lightRed',
-		buttonBgColorOnHover: 'darkRed',
+		titleColor: 'text-lightRed',
+		backgroundColor: 'bg-lightBlue',
+		transcriptBgColor: 'bg-lightBlue',
+		descriptionColor: 'text-white',
+		buttonBgColor: 'bg-lightRed',
+		buttonBgColorOnHover: 'hover:bg-darkRed',
 		iconPlay: '/assets/images/play_white.png',
 		iconPause: '/assets/images/pause_white.png',
-		borderColor: 'lightRed',
-		audioTextColor: 'white',
+		borderColor: 'bg-lightRed',
+		audioTextColor: 'text-white',
 		audios: [
 			{
 				id: 1,

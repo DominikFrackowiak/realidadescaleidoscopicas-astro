@@ -49,14 +49,27 @@ body {
 
 
 .display-none{
- display: none;
+ display: none !important;
 }
 
 .display-block{
- display: block;
+ display: block !important;
 }
 
 .display-flex{
- display: flex;
+ display: flex !important;
+}
+
+.step {
+  transition: opacity 0.3s ease-in-out;
+}
+
+.audio-transcript {
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Zastąp klasę display-none */
+.hidden {
+  display: none;
 }
 

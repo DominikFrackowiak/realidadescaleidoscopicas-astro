@@ -17,18 +17,19 @@ export interface StageProps {
 	icon: string
 	title: string
 	description: string
-	titleColor: Colors
-	descriptionColor: Colors
+	titleColor: string
+	descriptionColor: string
 	backgroundColor: string
-	transcriptBgColor: Colors
-	buttonBgColor: Colors
-	buttonBgColorOnHover: Colors
+	transcriptBgColor: string
+	buttonBgColor: string
+	buttonBgColorOnHover: string
 	iconPlay: string
 	iconPause: string
-	borderColor: 'lightRed' | 'darkBlue'
-	audioTextColor: 'white' | 'lightBlue'
+	// borderColor: 'lightRed' | 'darkBlue'
+	// audioTextColor: 'white' | 'lightBlue'
+	borderColor: string
+	audioTextColor: string
 	audios: Audio[]
-
 }
 
 export interface FirestoreWord {
