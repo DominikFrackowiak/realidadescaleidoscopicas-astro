@@ -1,5 +1,5 @@
 export const whoAreWeLeft: string[] = [
-	'<span class="text-[#fc3951] font-bold">“Construyendo nuevas narrativas decoloniales”</span>, se ha desarrollado en el marco de los proyectos de investigación promovidos por Medialab, laboratorio ciudadano y lugar de encuentro para la producción de proyectos culturales abiertos.',
+	'<span class="text-lightRed font-bold">“Construyendo nuevas narrativas decoloniales”</span>, se ha desarrollado en el marco de los proyectos de investigación promovidos por Medialab, laboratorio ciudadano y lugar de encuentro para la producción de proyectos culturales abiertos.',
 	'El proyecto se ha desarrollado utilizando la metodología abierta de la Investigación-Acción-Participativa (IAP) y transformadora. En línea con los enfoques y objetivos planteados, nunca hubiera podido llevarse a cabo sin contar con las aportaciones de todas las personas con las que he estado colaborando, compartiendo ideas e inquietudes. Entre ellas:',
 	'<span class="font-bold">Rachele Borghi</span>, autora de “Decolonialidad y Privilegio”, activista transfeminista y profesora de geografía en la Universidad de la Sorbona.',
 	'<a href="https://reunionreunion.com/" target="_blank"><span class="font-bold redOnHover">Dani Zelko</span></a>, artista argentino, autor de “Lengua o muerte”.',

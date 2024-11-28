@@ -1,0 +1,30 @@
+---
+import { twMerge } from 'tailwind-merge'
+
+const wrapper = 'flex flex-col mx-auto w-full px-4 md:px-0 md:max-w-[720px] lg:max-w-[1140px] gap-[40px]'
+---
+
+<footer id="contacto" class="flex items-center bg-lightBlue min-h-[40vh]">
+ <div class={twMerge(wrapper, 'md:flex-row md:justify-between')}>
+  <div class="flex flex-col justify-between h-[200px] ">
+   <h4 class="text-3xl text-lightRed font-semibold">Construyendo <br>
+					nuevas narrativas <br>
+					descoloniales
+				</h4>
+				<p class="text-xl text-white">
+					Laboratorio de participación ciudadana <br>
+					Medialab-Prado
+				</p>
+  </div>
+  <div class="flex flex-col justify-between h-[200px]">
+   <img src="/assets/images/matadero-medialab_trimmed.png" alt="logo medialab prado" class="w-[450px]">
+				<div class="flex flex-col items-end">
+					<p class="text-xl text-white text-right">
+						contacto:
+					</p>
+					<a class="text-xl text-white text-right hover:text-lightRed" href="mailto:realidadescaleidoscopicas@gmail.com" target="_blank">realidadescaleidoscopicas@gmail.com</a>
+
+				</div>
+  </div>
+ </div>
+</footer>

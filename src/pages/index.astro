@@ -1,5 +1,12 @@
 ---
-import Step from '../components/organisms/steps/Step.astro'
+import Hero from '../components/organisms/Hero.astro'
+import MoreInfo from '../components/organisms/MoreInfo.astro'
+import Steps from '../components/organisms/steps/Steps.astro'
+import WhoWeAre from '../components/organisms/WhoWeAre.astro'
+import Footer from '../components/organisms/Footer.astro';
+import Participate from '../components/organisms/Participate.astro';
+// import Wordcloud from '../components/organisms/wordcloud/Wordcloud.astro';
+import WordCloud from '../components/organisms/wordcloud/Wordcloud.jsx'
 
 ---
 
@@ -14,8 +21,13 @@ import Step from '../components/organisms/steps/Step.astro'
 	</head>
 	<body>
 		<main>
-			<Step />
-			<!-- <Stage client:load/> -->
+			<Hero/>
+			<MoreInfo/>
+			<Participate/>
+			<WordCloud client:load/>
+			<Steps />
+			<WhoWeAre/>
 		</main>
+		<Footer/>
 	</body>
 </html>
