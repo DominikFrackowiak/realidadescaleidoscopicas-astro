@@ -6,7 +6,8 @@ import WhoWeAre from '../components/organisms/WhoWeAre.astro'
 import Footer from '../components/organisms/Footer.astro';
 import Participate from '../components/organisms/Participate.astro';
 // import Wordcloud from '../components/organisms/wordcloud/Wordcloud.astro';
-import WordCloud from '../components/organisms/wordcloud/Wordcloud.jsx'
+// import WordCloud from '../components/organisms/wordcloud/Wordcloud.jsx'
+import WordcloudSection from '../components/organisms/wordcloud/WordcloudSection.astro';
 
 ---
 
@@ -24,7 +25,7 @@ import WordCloud from '../components/organisms/wordcloud/Wordcloud.jsx'
 			<Hero/>
 			<MoreInfo/>
 			<Participate/>
-			<WordCloud client:load/>
+			<WordcloudSection />
 			<Steps />
 			<WhoWeAre/>
 		</main>

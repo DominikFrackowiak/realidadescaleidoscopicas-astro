@@ -1,5 +1,6 @@
 ---
 import { twMerge } from 'tailwind-merge'
+import WordCloudComponent from './WordcloudProper';
 const wrapper = 'flex flex-col mx-auto w-full px-4 md:px-0 md:max-w-[720px] lg:max-w-[1140px] gap-[40px]'
 ---
 
@@ -7,6 +8,9 @@ const wrapper = 'flex flex-col mx-auto w-full px-4 md:px-0 md:max-w-[720px] lg:m
  <div class={twMerge(wrapper, 'items-start')}>
   <h2 class="flex flex-col text-lightBlue font-tavares text-5xl font-semibold">
 				<span>Nube</span><span class="pl-20">de palabras</span></h2>
+					<div class='border h-[500px] w-full'>
+					<WordCloudComponent client:load/>
+				</div>
     <blockquote class="text-lightRed text-lg">“El caleidoscopio permite ver las cosas de forma
 						distinta
 						y
