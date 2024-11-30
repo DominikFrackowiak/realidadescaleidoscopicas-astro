@@ -37,5 +37,6 @@ export default {
 		'max-w-[280px]',
 		'md:max-w-[720px]',
 		'lg:max-w-[1140px]',
+		'spanish',
 	],
 }
