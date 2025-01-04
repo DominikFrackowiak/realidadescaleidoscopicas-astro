@@ -1,7 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 export default {
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
-	theme: {
+	mode: 'jit',
+theme: {
 		extend: {
 			colors: {
 				white: '#ffffff',
@@ -39,6 +40,6 @@ export default {
 		'lg:max-w-[1140px]',
 		'spanish',
 		'font-tavares',
-		'font-sans'
+		'font-sans',
 	],
 }
