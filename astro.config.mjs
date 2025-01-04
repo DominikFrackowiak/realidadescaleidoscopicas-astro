@@ -7,6 +7,9 @@ export default defineConfig({
 	output: 'server',
 	server: { port: 3000 },
 	integrations: [tailwind(), react()],
+	build: {
+		assets: 'assets',
+	},
 	adapter: vercel(),
 	vite: {
 		ssr: {
