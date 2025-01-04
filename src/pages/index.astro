@@ -10,6 +10,7 @@ import WordCloud from '../components/organisms/wordcloud/Wordcloud.jsx'
 import Opinion from '../components/organisms/Opinion.astro'
 import HeaderDesktop from '../components/organisms/HeaderDesktop'
 // import WordcloudSection from '../components/organisms/wordcloud/WordcloudSection.astro';
+import '../styles/globals.css'
 ---
 
 <html lang='en'>
@@ -47,7 +48,6 @@ import HeaderDesktop from '../components/organisms/HeaderDesktop'
 			type='font/otf'
 			crossorigin
 		/>
-		<link rel='stylesheet' href='/styles/globals.css' />
 	</head>
 	<body>
 		<HeaderDesktop client:load />
