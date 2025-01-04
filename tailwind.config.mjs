@@ -38,5 +38,7 @@ export default {
 		'md:max-w-[720px]',
 		'lg:max-w-[1140px]',
 		'spanish',
+		'font-tavares',
+		'font-sans'
 	],
 }
