@@ -9,11 +9,8 @@ export default defineConfig({
 	integrations: [tailwind(), react()],
 	adapter: vercel(),
 	vite: {
-		// resolve: {
-		// 	alias: {
-		// 		react: 'react@16.13.0',
-		// 		'react-dom': 'react-dom@16.13.0',
-		// 	},
-		// },
+		ssr: {
+			noExternal: ['react-wordcloud'],
+		},
 	},
 })

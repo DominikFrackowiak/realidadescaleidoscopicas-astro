@@ -2,25 +2,26 @@ import { twMerge } from 'tailwind-merge'
 
 import WordCloudComponent from './WordcloudProper'
 
-const wrapper = 'flex flex-col mx-auto w-full px-4 md:px-0 md:max-w-[720px] lg:max-w-[1140px] gap-[40px]'
+const wrapper =
+	'flex flex-col mx-auto w-full px-4 md:px-0 md:max-w-[720px] lg:max-w-[1140px] gap-[40px]'
 
 export default function WordCloud() {
-  return (
+	return (
 		<section
 			id='wordcloud'
-			class={twMerge(
+			className={twMerge(
 				'flex justify-center items-center py-20 min-h-[80vh] w-full'
 			)}
 		>
-			<div class={twMerge(wrapper, 'items-start')}>
-				<h2 class='flex flex-col text-lightBlue font-tavares text-5xl font-semibold'>
+			<div className={twMerge(wrapper, 'items-start')}>
+				<h2 className='flex flex-col text-lightBlue font-tavares text-5xl font-semibold'>
 					<span>Nube</span>
-					<span class='pl-20'>de palabras</span>
+					<span className='pl-20'>de palabras</span>
 				</h2>
-				<div class='border h-[500px] w-full'>
-					<WordCloudComponent />
-				</div>
-				<blockquote class='text-lightRed text-lg'>
+
+				<WordCloudComponent />
+
+				<blockquote className='text-lightRed text-lg'>
 					“El caleidoscopio permite ver las cosas de forma distinta y construir
 					nuevas imágenes relacionadas con nuevas realidades. No es solo un tema
 					de puntos de vista sino de puntos de acciones. El caleidoscopio es una

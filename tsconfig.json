@@ -4,6 +4,12 @@
 		"moduleResolution": "node",
 		"paths": {
 			"*": ["./node_modules/*"]
-		}
+		},
+		"jsx": "react-jsx",
+
+		"esModuleInterop": true,
+		"strict": true,
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true
 	}
 }
