@@ -9,10 +9,10 @@ export const whoAreWeLeft: string[] = [
 
 export const whoAreWeRight: string[] = [
 	'<a href="https://grigriprojects.org/" target="_blank"><span class="transition duration-300 font-bold redOnHover">Grigri Project</span></a>, plataforma dedicada a la investigación, creación y producción cultural.',
-	'<a href="https://grigriprojects.org/" target="_blank"><span class="transition duration-300 font-bold redOnHover">Marcin Chyliński</span></a>, Artista visual.',
-	'<a href="https://grigriprojects.org/" target="_blank"><span class="transition duration-300 font-bold redOnHover">Dominik Frąckowiak</span></a>, programador Web.',
-	'<a href="https://grigriprojects.org/" target="_blank"><span class="transition duration-300 font-bold redOnHover">Ana María de la Hoz Trapero y Jorge Jimeno</span></a>, de la compañía teatral Montajes en el abismo.',
-	'<a href="https://grigriprojects.org/" target="_blank"><span class="transition duration-300 font-bold redOnHover">Rodrigo Ortiz de Zarate</span></a>, grabación y edición de los audios.',
+	'<a href="https://dotinspot.com" target="_blank"><span class="transition duration-300 font-bold redOnHover">Marcin Chyliński</span></a>, Artista visual.',
+	'<a href="https://dominikfrackowiak.com" target="_blank"><span class="transition duration-300 font-bold redOnHover">Dominik Frąckowiak</span></a>, programador Web.',
+	'<a href="https://montajesenelabismo.com/" target="_blank"><span class="transition duration-300 font-bold redOnHover">Ana María de la Hoz Trapero y Jorge Jimeno</span></a>, de la compañía teatral Montajes en el abismo.',
+	'<a href="https://www.latrituradora.com/" target="_blank"><span class="transition duration-300 font-bold redOnHover">Rodrigo Ortiz de Zarate</span></a>, grabación y edición de los audios.',
 	'<span class="font-bold">Angel de la Serna Vilar</span>, ayudante de producción.',
 	'Todas las personas que han participado en las Jornadas de co-creación de contenidos “(Des)iguales. Una mirada caleidoscópicas”.',
 	'Yo, <span class="font-bold">Giulia Pizzuti</span>, investigadora y coordinadora del proyecto.',
