@@ -26,54 +26,51 @@
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
- 
 }
 
-html{
-	scroll-behavior: smooth;
+html {
+	scroll-behavior: smooth !important;
 }
 
 body {
 	overflow-x: hidden;
- font-family: 'Galano Grotesque Regular';
+	font-family: 'Galano Grotesque Regular';
 }
 
-.voz{
+.voz {
 	font-weight: 900;
 }
 
 .spanish {
-	display: inline-block;
-	transform: rotate(-180deg);
+	display: inline-block !important;
+	transform: rotate(-180deg) !important;
 }
 
-.redOnHover:hover{
+.redOnHover:hover {
 	color: #fc3951;
 }
 
-
-.display-none{
- display: none !important;
+.display-none {
+	display: none !important;
 }
 
-.display-block{
- display: block !important;
+.display-block {
+	display: block !important;
 }
 
-.display-flex{
- display: flex !important;
+.display-flex {
+	display: flex !important;
 }
 
 .step {
-  transition: opacity 0.3s ease-in-out;
+	transition: opacity 0.3s ease-in-out;
 }
 
 .audio-transcript {
-  transition: opacity 0.3s ease-in-out;
+	transition: opacity 0.3s ease-in-out;
 }
 
 /* Zastąp klasę display-none */
 .hidden {
-  display: none;
+	display: none;
 }
-

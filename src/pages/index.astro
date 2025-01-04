@@ -3,14 +3,13 @@ import Hero from '../components/organisms/Hero.astro'
 import MoreInfo from '../components/organisms/MoreInfo.astro'
 import Steps from '../components/organisms/steps/Steps.astro'
 import WhoWeAre from '../components/organisms/WhoWeAre.astro'
-import Footer from '../components/organisms/Footer.astro';
-import Participate from '../components/organisms/Participate.astro';
+import Footer from '../components/organisms/Footer.astro'
+import Participate from '../components/organisms/Participate.astro'
 // import Wordcloud from '../components/organisms/wordcloud/Wordcloud.astro';
 import WordCloud from '../components/organisms/wordcloud/Wordcloud.jsx'
-import Opinion from '../components/organisms/Opinion.astro';
-import HeaderDesktop from '../components/organisms/HeaderDesktop';
+import Opinion from '../components/organisms/Opinion.astro'
+import HeaderDesktop from '../components/organisms/HeaderDesktop'
 // import WordcloudSection from '../components/organisms/wordcloud/WordcloudSection.astro';
-
 ---
 
 <html lang='en'>
@@ -20,19 +19,47 @@ import HeaderDesktop from '../components/organisms/HeaderDesktop';
 		<meta name='viewport' content='width=device-width' />
 		<meta name='generator' content={Astro.generator} />
 		<title>Astro</title>
-		<link rel="stylesheet" href="/src/styles/globals.css">
+		<link
+			rel='preload'
+			href='/assets/fonts/Tavares.ttf'
+			as='font'
+			type='font/ttf'
+			crossorigin
+		/>
+		<link
+			rel='preload'
+			href='/assets/fonts/GalanoGrotesqueMedium.otf'
+			as='font'
+			type='font/otf'
+			crossorigin
+		/>
+		<link
+			rel='preload'
+			href='/assets/fonts/GalanoGrotesqueSemiBold.otf'
+			as='font'
+			type='font/otf'
+			crossorigin
+		/>
+		<link
+			rel='preload'
+			href='/assets/fonts/GalanoGrotesqueRegular.otf'
+			as='font'
+			type='font/otf'
+			crossorigin
+		/>
+		<link rel='stylesheet' href='/src/styles/globals.css' />
 	</head>
 	<body>
-		<HeaderDesktop client:load/>
+		<HeaderDesktop client:load />
 		<main>
-			<Hero/>
-			<MoreInfo/>
-			<Participate/>
+			<Hero />
+			<MoreInfo />
+			<Participate />
 			<WordCloud client:load />
 			<Steps />
-			<Opinion/>
-			<WhoWeAre/>
+			<Opinion />
+			<WhoWeAre />
 		</main>
-		<Footer/>
+		<Footer />
 	</body>
 </html>
