@@ -119,7 +119,7 @@ export default function WordCloudVisualization() {
       {isPending && <p>Loading...</p>}
       {error && <p>{error}</p>}
       {words && words.length > 0 && (
-        <div className="h-[700px] w-full">
+        <div className="max-h-[700px] w-full">
           <React.Suspense fallback={<div>Loading word cloud...</div>}>
             <ReactWordcloud options={options} words={words} />
           </React.Suspense>
