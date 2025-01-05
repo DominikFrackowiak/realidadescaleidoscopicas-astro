@@ -3,7 +3,7 @@ import { twMerge } from 'tailwind-merge'
 import WordCloudVisualization from './WordCloudVisualization';
 
 const wrapper =
-	'flex flex-col mx-auto w-full px-4 md:px-0 md:max-w-[720px] lg:max-w-[1140px] gap-[2px]'
+	'flex flex-col mx-auto w-full px-4 md:px-0 md:max-w-[720px] lg:max-w-[1140px] gap-[40px]'
 
 export default function WordCloudSectionContainer() {
   return (
