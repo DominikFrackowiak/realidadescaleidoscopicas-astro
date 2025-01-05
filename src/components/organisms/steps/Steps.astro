@@ -104,14 +104,14 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   })
 
-  playIcons.forEach((icon, i) => {
+playIcons.forEach((icon, i) => {
     icon.addEventListener('click', () => {
       // Pause all other audios and reset their icons
       audios.forEach((audio, index) => {
         if (index !== i) {
           audio.pause()
           playIcons[index].style.display = 'block'
-          pauseIcons[index].style.display = 'none'
+          pauseIcons[index].style.display = 'none' // Tu była zmiana
         }
       })
 
@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
         currentTranscriptSection.style.display = 'none'
 
         // Show corresponding main section
-        console.log(targetMainSection)
+        
         targetMainSection.style.display = 'flex'
         
 
