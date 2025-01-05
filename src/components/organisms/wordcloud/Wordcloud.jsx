@@ -1,132 +1,132 @@
-import React, { useEffect, useState, useRef } from 'react'
-import { db } from '../../../../lib/firebase/firebaseConfig'
+import React, { useEffect, useState, useRef } from 'react';
+import { db } from '../../../../lib/firebase/firebaseConfig';
 import {
-	collection,
-	query,
-	orderBy,
-	limit,
-	onSnapshot,
-} from 'firebase/firestore'
-import 'tippy.js/dist/tippy.css'
-import 'tippy.js/animations/scale.css'
+  collection,
+  query,
+  orderBy,
+  limit,
+  onSnapshot,
+} from 'firebase/firestore';
+import 'tippy.js/dist/tippy.css';
+import 'tippy.js/animations/scale.css';
 
 // Lazy load ReactWordcloud only on client side
-const ReactWordcloud = React.lazy(() => import('react-wordcloud'))
+const ReactWordcloud = React.lazy(() => import('react-wordcloud'));
 
 const options = {
-	colors: ['#fc3951', '#ed0033', '#364ec6', '#2e3192'],
-	enableTooltip: true,
-	deterministic: false,
-	fontFamily: 'Galano Grotesque Semibold',
-	fontSizes: [20, 70],
-	fontStyle: 'normal',
-	fontWeight: 'normal',
-	padding: 1,
-	rotations: 3,
-	rotationAngles: [0, 90],
-	scale: 'sqrt',
-	spiral: 'archimedean',
-	transitionDuration: 1000,
-}
+  colors: ['#fc3951', '#ed0033', '#364ec6', '#2e3192'],
+  enableTooltip: true,
+  deterministic: false,
+  fontFamily: 'Galano Grotesque Semibold',
+  fontSizes: [20, 70],
+  fontStyle: 'normal',
+  fontWeight: 'normal',
+  padding: 1,
+  rotations: 3,
+  rotationAngles: [0, 90],
+  scale: 'sqrt',
+  spiral: 'archimedean',
+  transitionDuration: 1000,
+};
 
 const useIntersectionObserver = (ref, options = {}) => {
-	const [isIntersecting, setIsIntersecting] = useState(false)
+  const [isIntersecting, setIsIntersecting] = useState(false);
 
-	useEffect(() => {
-		if (!ref.current || typeof IntersectionObserver === 'undefined') return
+  useEffect(() => {
+    if (!ref.current || typeof IntersectionObserver === 'undefined') return;
 
-		const observer = new IntersectionObserver(([entry]) => {
-			if (entry.isIntersecting) {
-				setTimeout(() => setIsIntersecting(true), 500)
-			} else {
-				setIsIntersecting(false)
-			}
-		}, options)
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => setIsIntersecting(true), 500);
+      } else {
+        setIsIntersecting(false);
+      }
+    }, options);
 
-		observer.observe(ref.current)
+    observer.observe(ref.current);
 
-		return () => {
-			observer.disconnect()
-		}
-	}, [ref, options])
+    return () => {
+      observer.disconnect();
+    };
+  }, [ref, options]);
 
-	return isIntersecting
-}
+  return isIntersecting;
+};
 
-const useFirebaseData = isVisible => {
-	const [words, setWords] = useState([])
-	const [isPending, setIsPending] = useState(true)
-	const [error, setError] = useState(null)
+const useFirebaseData = (isVisible) => {
+  const [words, setWords] = useState([]);
+  const [isPending, setIsPending] = useState(true);
+  const [error, setError] = useState(null);
 
-	useEffect(() => {
-		if (!isVisible) return
+  useEffect(() => {
+    if (!isVisible) return;
 
-		const fetchData = async () => {
-			try {
-				const q = query(
-					collection(db, 'opinions'),
-					orderBy('value', 'desc'),
-					limit(15)
-				)
+    const fetchData = async () => {
+      try {
+        const q = query(
+          collection(db, 'opinions'),
+          orderBy('value', 'desc'),
+          limit(15)
+        );
 
-				const unsubscribe = onSnapshot(
-					q,
-					snapshot => {
-						if (snapshot.empty) {
-							setError('Todavía no hay ninguna palabra')
-							setIsPending(false)
-						} else {
-							const results = snapshot.docs.map(doc => ({ ...doc.data() }))
-							setWords(results)
-							setIsPending(false)
-						}
-					},
-					error => {
-						setError(error.message)
-						setIsPending(false)
-					}
-				)
+        const unsubscribe = onSnapshot(
+          q,
+          (snapshot) => {
+            if (snapshot.empty) {
+              setError('Todavía no hay ninguna palabra');
+              setIsPending(false);
+            } else {
+              const results = snapshot.docs.map((doc) => ({ ...doc.data() }));
+              setWords(results);
+              setIsPending(false);
+            }
+          },
+          (error) => {
+            setError(error.message);
+            setIsPending(false);
+          }
+        );
 
-				return () => unsubscribe()
-			} catch (err) {
-				setError(err.message)
-				setIsPending(false)
-			}
-		}
+        return () => unsubscribe();
+      } catch (err) {
+        setError(err.message);
+        setIsPending(false);
+      }
+    };
 
-		fetchData()
-	}, [isVisible])
+    fetchData();
+  }, [isVisible]);
 
-	return { words, isPending, error }
-}
+  return { words, isPending, error };
+};
 
 const WordCloud = () => {
-	const wordCloudRef = useRef(null)
-	const [isMounted, setIsMounted] = useState(false)
-	const isVisible = useIntersectionObserver(wordCloudRef)
-	const { words, isPending, error } = useFirebaseData(isVisible)
+  const wordCloudRef = useRef(null);
+  const [isMounted, setIsMounted] = useState(false);
+  const isVisible = useIntersectionObserver(wordCloudRef);
+  const { words, isPending, error } = useFirebaseData(isVisible);
 
-	useEffect(() => {
-		setIsMounted(true)
-	}, [])
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
-	if (!isMounted) {
-		return <div className='w-full'>Loading...</div>
-	}
+  if (!isMounted) {
+    return <div className="w-full">Loading...</div>;
+  }
 
-	return (
-		<div className='w-full' ref={wordCloudRef}>
-			{isPending && <p>Loading...</p>}
-			{error && <p>{error}</p>}
-			{words && words.length > 0 && (
-				<div className='h-[700px] w-full'>
-					<React.Suspense fallback={<div>Loading word cloud...</div>}>
-						<ReactWordcloud options={options} words={words} />
-					</React.Suspense>
-				</div>
-			)}
-		</div>
-	)
-}
+  return (
+    <div className="w-full" ref={wordCloudRef}>
+      {isPending && <p>Loading...</p>}
+      {error && <p>{error}</p>}
+      {words && words.length > 0 && (
+        <div className="h-[700px] w-full">
+          <React.Suspense fallback={<div>Loading word cloud...</div>}>
+            <ReactWordcloud options={options} words={words} />
+          </React.Suspense>
+        </div>
+      )}
+    </div>
+  );
+};
 
-export default WordCloud
+export default WordCloud;
