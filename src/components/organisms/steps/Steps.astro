@@ -139,7 +139,8 @@ document.addEventListener('DOMContentLoaded', () => {
       if (stageIndex !== null) {
         const idx = parseInt(stageIndex)
 
-        mainSections[idx].style.display = 'none'
+        mainSections[idx+1].style.display = 'none'
+        
         transcriptSections[idx].style.display = 'flex'
 
         audioTranscripts.forEach(transcript => {
@@ -169,13 +170,15 @@ document.addEventListener('DOMContentLoaded', () => {
       if (stageIndex !== null) {
         const idx = parseInt(stageIndex)
         const currentTranscriptSection = transcriptSections[idx]
-        const targetMainSection = mainSections[idx]
+        const targetMainSection = mainSections[idx+1]
 
         // Hide transcript section
         currentTranscriptSection.style.display = 'none'
 
         // Show corresponding main section
+        console.log(targetMainSection)
         targetMainSection.style.display = 'flex'
+        
 
         // Hide all transcripts for this stage
         audioTranscripts.forEach(transcript => {
