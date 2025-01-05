@@ -1,7 +1,8 @@
 ---
-import { twMerge } from 'tailwind-merge'
+import { twMerge } from 'tailwind-merge';
+
 const wrapper =
-	'flex flex-col mx-auto w-full px-4 md:px-0 md:max-w-[720px] lg:max-w-[1140px] gap-[40px]'
+	'flex flex-col mx-auto w-full px-4 md:px-0 md:max-w-[720px] lg:max-w-[1140px] gap-[40px]';
 ---
 
 <section
@@ -14,9 +15,8 @@ const wrapper =
 		<h2
 			class='flex flex-col text-white font-tavares text-2xl md:text-4xl font-semibold'
 		>
-			<span><span class='spanish'>?</span>Y tú</span><span class='pl-20'
-				>qué opinas?</span
-			>
+			<span><span class='spanish'>¿</span>Y tú</span>
+			<span class='pl-20'>qué opinas?</span>
 		</h2>
 		<p class='w-full text-white text-xl'>
 			¿Ya has escuchado algunos de los audios de las etapas en la que te
@@ -34,8 +34,10 @@ const wrapper =
 		>
 			<label
 				class='h-[30px] text-darkBlue font-tavares text-base'
-				for='tu-opinion'>escribe tu palabra</label
+				for='tu-opinion'
 			>
+				escribe tu palabra
+			</label>
 			<input
 				class='h-[30px] px-3'
 				type='text'
@@ -45,8 +47,61 @@ const wrapper =
 			/>
 			<button
 				class='h-[30px] self-end bg-darkBlue transition duration-300 hover:bg-lightBlue text-white w-1/2 font-tavares text-base'
-				type='submit'>enviar ///</button
+				type='submit'
 			>
+				enviar ///
+			</button>
 		</form>
 	</div>
 </section>
+
+<script>
+	import {
+		collection,
+		query,
+		where,
+		getDocs,
+		addDoc,
+		updateDoc,
+		increment,
+	} from 'firebase/firestore';
+	import { db } from '../../../lib/firebase/firebaseConfig';
+
+	const form = document.querySelector('#tu-opinion') as HTMLFormElement;
+	const wordCloud = document.querySelector('#wordcloud');
+
+	if (form) {
+		form.addEventListener('submit', async (e: SubmitEvent) => {
+			e.preventDefault();
+
+			const formData = new FormData(form);
+			const text = formData.get('text')?.toString().trim().toLowerCase() || '';
+
+			try {
+				const opinionsRef = collection(db, 'opinions');
+				const q = query(opinionsRef, where('text', '==', text));
+				const snapshot = await getDocs(q);
+
+				if (snapshot.empty) {
+					await addDoc(opinionsRef, {
+						text: text,
+						value: 1,
+					});
+					console.log(text + ' added');
+				} else {
+					await updateDoc(snapshot.docs[0].ref, {
+						value: increment(1),
+					});
+				}
+
+				if (wordCloud) {
+					wordCloud.scrollIntoView({ behavior: 'smooth' });
+				}
+
+				form.reset();
+			} catch (error) {
+				console.error('Error:', error);
+			}
+		});
+	}
+</script>
