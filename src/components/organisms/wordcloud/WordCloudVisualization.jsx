@@ -54,7 +54,11 @@ const useIntersectionObserver = (ref, options = {}) => {
 };
 
 const useFirebaseData = (isVisible) => {
-  const [words, setWords] = useState([]);
+  const [words, setWords] = useState([
+    'Cargando...',
+    'Cargando...',
+    'Cargando...',
+  ]);
   const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState(null);
 
@@ -116,13 +120,13 @@ export default function WordCloudVisualization() {
 
   return (
     <div className="w-full" ref={wordCloudRef}>
-      {isPending && <p>Loading...</p>}
+      {/* {isPending && <p>Loading...</p>} */}
       {error && <p>{error}</p>}
       {words && words.length > 0 && (
         <div className="min-h-[500px] max-h-[700px] w-full">
-          <React.Suspense fallback={<div>Loading word cloud...</div>}>
+          {/* <React.Suspense fallback={<div>Loading word cloud...</div>}> */}
             <ReactWordcloud options={options} words={words} />
-          </React.Suspense>
+          {/* </React.Suspense> */}
         </div>
       )}
     </div>
