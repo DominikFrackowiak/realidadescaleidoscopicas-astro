@@ -100,7 +100,7 @@ const useFirebaseData = (isVisible) => {
   return { words, isPending, error };
 };
 
-const WordCloud = () => {
+export default function WordCloudVisualization() {
   const wordCloudRef = useRef(null);
   const [isMounted, setIsMounted] = useState(false);
   const isVisible = useIntersectionObserver(wordCloudRef);
@@ -127,6 +127,4 @@ const WordCloud = () => {
       )}
     </div>
   );
-};
-
-export default WordCloud;
+}
