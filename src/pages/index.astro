@@ -10,6 +10,7 @@ import WordCloudSectionContainer from '../components/organisms/wordcloud/WordClo
 import Opinion from '../components/organisms/Opinion.astro';
 import HeaderDesktop from '../components/organisms/HeaderDesktop';
 import PageScrollIndicator from '../components/organisms/PageScrollIndicator';
+import PopoverMobileMenu from '../components/molecules/PopoverMenuMobile';
 
 import '../styles/globals.css';
 ---
@@ -51,6 +52,7 @@ import '../styles/globals.css';
 		/>
 	</head>
 	<body>
+		<PopoverMobileMenu client:load />
 		<PageScrollIndicator client:load />
 		<HeaderDesktop client:load />
 		<main>
