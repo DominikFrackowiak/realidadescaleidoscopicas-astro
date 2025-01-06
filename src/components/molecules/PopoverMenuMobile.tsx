@@ -17,7 +17,7 @@ export default function PopoverMobileMenu() {
   }
 
   return (
-    <div className='flex justify-center items-center fixed top-5 right-2 z-50 h-10 w-10 rounded-full bg-darkBlue bg-opacity-40'>
+    <div className='flex lg:hidden justify-center items-center fixed top-5 right-2 z-50 h-10 w-10 rounded-full bg-darkBlue bg-opacity-40'>
       <Popover.Root open={isPopoverOpen} onOpenChange={handleOpenChange}>
         <Popover.Trigger>
           <Popover.Indicator>

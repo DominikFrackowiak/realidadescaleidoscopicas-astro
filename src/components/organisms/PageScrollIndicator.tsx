@@ -5,7 +5,7 @@ export default function PageScrollIndicator() {
 
   return (
     <motion.div
-      className="progress-bar"
+      className="progress-bar block lg:hidden"
       style={{
         scaleX: scrollYProgress,
         position: 'fixed',
@@ -14,7 +14,7 @@ export default function PageScrollIndicator() {
         zIndex: 1000,
         height: 3,
         transformOrigin: '0%',
-        background: '#364ec6',
+        background: '#fc3951',
         width: '100%',
       }}
     />

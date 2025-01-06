@@ -8,7 +8,7 @@ const wrapper =
 export default function WordCloudSectionContainer() {
   return (
     <section
-      id="wordcloud"
+      id="nube"
       className={twMerge(
         'flex justify-center items-center py-20 min-h-[80vh] w-full'
       )}

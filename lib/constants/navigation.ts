@@ -1,32 +1,38 @@
 export interface NavLink {
   title: string;
   url?: string;
+  section?: string;
 }
 
 export const navLinks: NavLink[] = [
   {
     title: 'Inicio',
     url: '/',
+    section: 'inicio',
   },
   {
     title: 'Mapa Yincana',
-    url: '/#participate',
+    url: '/#yincana',
+    section: 'yincana',
   },
   {
     title: 'Nube de palabras',
-    url: '/#wordcloud',
+    url: '/#nube',
+    section: 'nube',
   },
   {
     title: 'Etapas',
-				
+    section: 'etapas',
   },
   {
     title: 'Quiénes somos',
-    url: '/#who-are-we',
+    url: '/#nosotros',
+    section: 'nosotros',
   },
   {
     title: 'Contacto',
     url: '/#contacto',
+    section: 'contacto',
   },
 ];
 
@@ -64,11 +70,11 @@ export const mobileNavigation: NavLink[] = [
   },
   {
     title: 'Mapa Yincana',
-    url: '/#participate',
+    url: '/#yincana',
   },
   {
     title: 'Nube de palabras',
-    url: '/#wordcloud',
+    url: '/#nube',
   },
   {
     title: 'Cuidados',
@@ -96,7 +102,7 @@ export const mobileNavigation: NavLink[] = [
   },
   {
     title: 'Quiénes somos',
-    url: '/#who-are-we',
+    url: '/#nosotros',
   },
   {
     title: 'Contacto',
