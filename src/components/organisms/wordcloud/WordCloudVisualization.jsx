@@ -108,7 +108,7 @@ export default function WordCloudVisualization() {
   const wordCloudRef = useRef(null);
   const [isMounted, setIsMounted] = useState(false);
   const isVisible = useIntersectionObserver(wordCloudRef);
-  const { words, isPending, error } = useFirebaseData(isVisible);
+  const { words, error } = useFirebaseData(isVisible);
 
   useEffect(() => {
     setIsMounted(true);
