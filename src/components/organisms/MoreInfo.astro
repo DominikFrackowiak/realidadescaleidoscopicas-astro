@@ -1,37 +1,48 @@
 ---
-import { twMerge } from 'tailwind-merge'
-const wrapper = 'flex flex-col mx-auto w-full px-4 md:px-0 md:max-w-[720px] lg:max-w-[1140px] gap-[40px]'
+import { twMerge } from 'tailwind-merge';
+const wrapper =
+	'flex flex-col mx-auto w-full px-4 md:px-0 md:max-w-[720px] lg:max-w-[1140px] gap-[40px]';
 ---
 
-<section 
-      id="more-info"
-      class={twMerge('flex justify-center items-center py-20 min-h-[80vh] w-full main-section bg-[url("/assets/images/background.svg")] bg-center bg-no-repeat bg-cover')}
-    >
-   <div class={twMerge(wrapper)}>
-     <h2 class="text-white font-tavares text-center text-5xl font-semibold">
-				<span class="spanish">?</span>Y tú encajas?
-			</h2>
-			<h3 class="text-white font-galano-medium text-center text-3xl font-semibold">Des(iguales)</h3>
-			<h4 class="text-white text-center text-3xl">Una mirada caleidoscópica</h4>
-   <div class="flex flex-col lg:flex-row gap-[40px] w-full">
-    <p class="w-full lg:w-1/2 text-white text-xl">
-					Tomar conciencia de los privilegios y opresiones relacionados con el
-					cuerpo y el lugar que nos ha tocado habitar nos hace entender que las
-					opresiones no se desarrollan solo en las relaciones entre personas
-					particulares, sino que se configuran en las relaciones de poder
-					ínsitas en las estructuras sociales. Pero, ¿cómo podemos participar en
-					la construcción de un derecho a la ciudad como un espacio en el que
-					todas las identidades sean respetadas y puedan convivir valorando sus
-					diferencias en lugar de ser eliminadas, invisibilizadas y reprimidas?</p>
-				<p class="w-full lg:w-1/2 text-white text-xl">
-					El presente proyecto busca facilitar la construcción de narrativas y
-					espacios de convivencia libres de prácticas excluyentes, clasistas y
-					racistas y propone la construcción de un caleidoscopio, metáfora de la
-					construcción participativa de un conocimiento crítico que, rechazando
-					las categorías cerradas del razonamiento binario, se construya desde
-					la intersección de distintas experiencias, condiciones, y caminos de
-					vida.
-				</p>
-   </div>
-   </div>
-   </section>
+<section
+	id='more-info'
+	class={twMerge(
+		'flex justify-center items-center py-20 min-h-[80vh] w-full main-section bg-[url("/assets/images/background.svg")] bg-center bg-no-repeat bg-cover'
+	)}
+>
+	<div class={twMerge(wrapper)}>
+		<h2
+			class='text-white font-tavares text-center text-3xl md:text-5xl font-semibold'
+		>
+			<span class='spanish'>?</span>Y tú encajas?
+		</h2>
+		<h3
+			class='text-white font-galano-medium text-center text-2xl md:text-3xl font-semibold'
+		>
+			Des(iguales)
+		</h3>
+		<h4 class='text-white text-center text-2xl md:text-3xl'>
+			Una mirada caleidoscópica
+		</h4>
+		<div class='flex flex-col lg:flex-row gap-[40px] w-full'>
+			<p class='w-full lg:w-1/2 text-white text-xl'>
+				Tomar conciencia de los privilegios y opresiones relacionados con el
+				cuerpo y el lugar que nos ha tocado habitar nos hace entender que las
+				opresiones no se desarrollan solo en las relaciones entre personas
+				particulares, sino que se configuran en las relaciones de poder ínsitas
+				en las estructuras sociales. Pero, ¿cómo podemos participar en la
+				construcción de un derecho a la ciudad como un espacio en el que todas
+				las identidades sean respetadas y puedan convivir valorando sus
+				diferencias en lugar de ser eliminadas, invisibilizadas y reprimidas?
+			</p>
+			<p class='w-full lg:w-1/2 text-white text-xl'>
+				El presente proyecto busca facilitar la construcción de narrativas y
+				espacios de convivencia libres de prácticas excluyentes, clasistas y
+				racistas y propone la construcción de un caleidoscopio, metáfora de la
+				construcción participativa de un conocimiento crítico que, rechazando
+				las categorías cerradas del razonamiento binario, se construya desde la
+				intersección de distintas experiencias, condiciones, y caminos de vida.
+			</p>
+		</div>
+	</div>
+</section>

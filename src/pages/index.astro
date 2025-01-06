@@ -9,6 +9,7 @@ import Participate from '../components/organisms/Participate.astro';
 import WordCloudSectionContainer from '../components/organisms/wordcloud/WordCloudSectionContainer.jsx';
 import Opinion from '../components/organisms/Opinion.astro';
 import HeaderDesktop from '../components/organisms/HeaderDesktop';
+import PageScrollIndicator from '../components/organisms/PageScrollIndicator';
 
 import '../styles/globals.css';
 ---
@@ -50,6 +51,7 @@ import '../styles/globals.css';
 		/>
 	</head>
 	<body>
+		<PageScrollIndicator client:load />
 		<HeaderDesktop client:load />
 		<main>
 			<Hero />

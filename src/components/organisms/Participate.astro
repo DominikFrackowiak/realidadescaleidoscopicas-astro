@@ -1,31 +1,59 @@
 ---
 import yincanaSteps from '../../../lib/constants/yincanaSteps';
-import { twMerge } from 'tailwind-merge'
-const wrapper = 'flex flex-col mx-auto w-full px-4 md:px-0 md:max-w-[720px] lg:max-w-[1140px] gap-[40px]'
+import { twMerge } from 'tailwind-merge';
+const wrapper =
+	'flex flex-col mx-auto w-full px-4 md:px-0 md:max-w-[720px] lg:max-w-[1140px] gap-[40px]';
 ---
 
-<section id="participate"
-      class={twMerge('flex justify-center items-center py-20 min-h-[80vh] w-full')}>
-   <div class={twMerge(wrapper)}>
-    <h2 class="text-lightRed font-tavares text-center text-5xl font-semibold">
-				<span class="spanish mr-2">!</span>Participa en Yincana!</h2>
-    <h3 class="text-darkBlue font-galano-medium text-center text-3xl font-semibold">forma parte de la construcción de nuevas narrativas decoloniales</h3>
-    <div class="flex w-full justify-between gap-[40px]">
-     <div class="w-1/2">
-      <img src="/assets/images/mapa.svg" alt="" class="w-full">
-     </div>
-     <div class="flex flex-col w-1/2 gap-[20px]">
-      <p class="text-lightBlue text-lg">
-       En el mapa se indican las 5 etapas que corresponden a los ámbitos trabajados en el proyecto: cuidados, educación, sanidad, cultura participada, vivienda. En cada etapa encontrarás un código QR que te permitirá acceder a los audios relacionados con el ámbito de referencia. Después de haber escuchado los audios podrás compartir tu punto de vista sobre la temática abordada indicando cómo este ámbito de vida podría ser más inclusivo. Tus palabras se incluirán dentro del caleidoscopio, que se irá moviendo y alimentando por los distintos puntos de vistas compartidos por cada una de las personas participantes.
-      </p>
-      <div class="grid grid-cols-3 grid-rows-2 gap-5 pr-5 w-3/4">
-       {yincanaSteps.map(step => (
-        <div class="flex gap-2 items-center">
-         <img src={step.src} alt={step.title} class="w-[20px] h-auto"><p class="pt-1 text-lightBlue">{step.title}</p>
-         </div>
-       ))}
-      </div>
-     </div>
-    </div>
-   </div>
+<section
+	id='participate'
+	class={twMerge('flex justify-center items-center py-20 min-h-[80vh] w-full')}
+>
+	<div class={twMerge(wrapper)}>
+		<h2
+			class='text-lightRed font-tavares text-center text-2xl md:text-4xl font-semibold'
+		>
+			<span class='spanish mr-2'>!</span>Participa en Yincana!
+		</h2>
+		<h3
+			class='text-darkBlue font-galano-medium text-center text-2xl md:text-3xl font-semibold'
+		>
+			forma parte de la construcción de nuevas narrativas decoloniales
+		</h3>
+		<div class='flex flex-col md:flex-row md:w-full justify-between gap-[40px]'>
+			<div class='w-full md:w-1/2'>
+				<img src='/assets/images/mapa.svg' alt='' class='w-full' />
+			</div>
+			<div class='flex flex-col w-full md:w-1/2 gap-[20px]'>
+				<p class='text-lightBlue text-lg'>
+					En el mapa se indican las 5 etapas que corresponden a los ámbitos
+					trabajados en el proyecto: cuidados, educación, sanidad, cultura
+					participada, vivienda. En cada etapa encontrarás un código QR que te
+					permitirá acceder a los audios relacionados con el ámbito de
+					referencia. Después de haber escuchado los audios podrás compartir tu
+					punto de vista sobre la temática abordada indicando cómo este ámbito
+					de vida podría ser más inclusivo. Tus palabras se incluirán dentro del
+					caleidoscopio, que se irá moviendo y alimentando por los distintos
+					puntos de vistas compartidos por cada una de las personas
+					participantes.
+				</p>
+				<div class='grid grid-cols-3 grid-rows-2 gap-5 pr-5 w-3/4'>
+					{
+						yincanaSteps.map(step => (
+							<div class='flex gap-2 items-center'>
+								<>
+									<img
+										src={step.src}
+										alt={step.title}
+										class='w-[20px] h-auto'
+									/>
+									<p class='pt-1 text-lightBlue'>{step.title}</p>
+								</>
+							</div>
+						))
+					}
+				</div>
+			</div>
+		</div>
+	</div>
 </section>

@@ -14,7 +14,7 @@ export default function WordCloudSectionContainer() {
       )}
     >
       <div className={twMerge(wrapper, 'items-start')}>
-        <h2 className="flex flex-col text-lightBlue font-tavares text-5xl font-semibold">
+        <h2 className="flex flex-col text-lightBlue font-tavares text-2xl md:text-4xl font-semibold">
           <span>Nube</span>
           <span className="pl-20">de palabras</span>
         </h2>
