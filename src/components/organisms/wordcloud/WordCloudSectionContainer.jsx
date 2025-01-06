@@ -14,14 +14,14 @@ export default function WordCloudSectionContainer() {
       )}
     >
       <div className={twMerge(wrapper, 'items-start')}>
-        <h2 className="flex flex-col text-lightBlue font-tavares text-2xl md:text-4xl font-semibold">
+        <h2 className="flex flex-col text-lightBlue font-tavares text-2xl md:text-4xl font-semibold self-center md:self-start">
           <span>Nube</span>
           <span className="pl-20">de palabras</span>
         </h2>
 
         <WordCloudVisualization />
 
-        <blockquote className="text-lightRed text-lg">
+        <blockquote className="text-lightRed text-lg text-center md:text-left">
           “El caleidoscopio permite ver las cosas de forma distinta y construir
           nuevas imágenes relacionadas con nuevas realidades. No es solo un tema
           de puntos de vista sino de puntos de acciones. El caleidoscopio es una

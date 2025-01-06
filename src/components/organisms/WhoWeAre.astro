@@ -1,27 +1,43 @@
 ---
-import { twMerge } from 'tailwind-merge'
+import { twMerge } from 'tailwind-merge';
 
-import { whoAreWeLeft } from "../../../lib/constants/whoAreWe";
-import { whoAreWeRight } from "../../../lib/constants/whoAreWe"
+import { whoAreWeLeft } from '../../../lib/constants/whoAreWe';
+import { whoAreWeRight } from '../../../lib/constants/whoAreWe';
 
-const wrapper = 'flex flex-col mx-auto w-full px-4 md:px-0 md:max-w-[720px] lg:max-w-[1140px] gap-[40px]'
+const wrapper =
+	'flex flex-col mx-auto w-full px-4 md:px-0 md:max-w-[720px] lg:max-w-[1140px] gap-[40px]';
 ---
 
-<section id="who-are-we" class="py-[40px]">
-  <div class={twMerge(wrapper, 'gap-[40px]')}>
-   <h2 class={twMerge("text-2xl md:text-4xl font-tavares md:mt-[9px] font-bold text-darkBlue")}><span class="spanish">?</span>Quiénes
-				somos?</h2>
-    <div class="flex flex-col md:flex-row gap-[40px]">
-   <div class=" flex flex-col gap-[20px] w-full md:w-1/2">
-    {whoAreWeLeft.map(p => (
-     <p set:html={p} class="text-darkBlue text-xl"/>
-    ))}
-   </div>
-   <div class=" flex flex-col gap-[20px]  w-full md:w-1/2">
-    {whoAreWeRight.map(p => (
-     <p set:html={p} class="text-darkBlue text-xl"/>
-    ))}
-   </div>
-   </div>
-  </div>
+<section id='who-are-we' class='py-[40px]'>
+	<div class={twMerge(wrapper, 'gap-[40px]')}>
+		<h2
+			class={twMerge(
+				'text-2xl md:text-4xl font-tavares md:mt-[9px] font-bold text-darkBlue self-center md:self-start'
+			)}
+		>
+			<span class='spanish'>?</span>Quiénes somos?
+		</h2>
+		<div class='flex flex-col md:flex-row gap-[40px]'>
+			<div class='flex flex-col gap-[20px] w-full md:w-1/2'>
+				{
+					whoAreWeLeft.map(p => (
+						<p
+							set:html={p}
+							class='text-darkBlue text-xl text-center md:text-left'
+						/>
+					))
+				}
+			</div>
+			<div class='flex flex-col gap-[20px] w-full md:w-1/2'>
+				{
+					whoAreWeRight.map(p => (
+						<p
+							set:html={p}
+							class='text-darkBlue text-xl text-center md:text-left'
+						/>
+					))
+				}
+			</div>
+		</div>
+	</div>
 </section>

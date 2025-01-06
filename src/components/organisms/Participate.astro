@@ -25,7 +25,7 @@ const wrapper =
 				<img src='/assets/images/mapa.svg' alt='' class='w-full' />
 			</div>
 			<div class='flex flex-col w-full md:w-1/2 gap-[20px]'>
-				<p class='text-lightBlue text-lg'>
+				<p class='text-lightBlue text-lg text-center md:text-left'>
 					En el mapa se indican las 5 etapas que corresponden a los ámbitos
 					trabajados en el proyecto: cuidados, educación, sanidad, cultura
 					participada, vivienda. En cada etapa encontrarás un código QR que te
@@ -37,7 +37,9 @@ const wrapper =
 					puntos de vistas compartidos por cada una de las personas
 					participantes.
 				</p>
-				<div class='grid grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-5 pr-5 w-3/4'>
+				<div
+					class='grid grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-5 pr-5 w-3/4 self-center md:self-start mt-10 md:mt-5'
+				>
 					{
 						yincanaSteps.map(step => (
 							<div class='flex gap-2 items-center'>

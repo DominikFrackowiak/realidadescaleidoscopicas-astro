@@ -136,7 +136,7 @@ const stagesData: StageProps[] = [
 	{
 		id: 4,
 		icon: '/assets/images/4.png',
-		title: 'Cultura Participada',
+		title: 'Cultura',
 		category: 'cultura',
 		description:
 			'Los modelos culturales hegemónicos, la mayoría de las veces, no solamente no representan las minorías, sino que les quitan las herramientas para hablar de su propia experiencia. ¿Qué entendemos por cultura? ¿Qué entendemos con la palabra “conocimientos”? ¿Quién los genera y quien los legitima?',
