@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { twMerge } from 'tailwind-merge';
 import { navLinks } from '../../../lib/constants/navigation';
